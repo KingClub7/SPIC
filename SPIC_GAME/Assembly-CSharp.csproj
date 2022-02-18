@@ -70,6 +70,9 @@
     <Compile Include="Assets\C#\CameraController.cs" />
     <Compile Include="Assets\C#\EfeOBJ.cs" />
     <Compile Include="Assets\C#\Efect.cs" />
+    <Compile Include="Assets\C#\ElevatorSC.cs" />
+    <Compile Include="Assets\C#\ElevatorSL.cs" />
+    <Compile Include="Assets\C#\ElevatorSR.cs" />
     <Compile Include="Assets\C#\Gauge.cs" />
     <Compile Include="Assets\C#\MFloor.cs" />
     <Compile Include="Assets\C#\Player.cs" />
