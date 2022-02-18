@@ -27,7 +27,7 @@ public class BreakB : MonoBehaviour
         Player player = other.GetComponent<Player>();
         if (player != null)
         {
-            Gauge.BScore = true;
+            //Gauge.BScore = true;
             //Debug.Log("bbb");
             GameObject destroyBox = Instantiate(destroyBoxPrefab,
                                     transform.position, transform.rotation);
