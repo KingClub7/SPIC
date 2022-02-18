@@ -1,154 +1,381 @@
-ï»¿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 [RequireComponent(typeof(CharacterController))]
 public class Player : MonoBehaviour
 {
-    [SerializeField]
-    private float maxMoveS = 10.0f;
     private CharacterController controller;
-    private float horiSpeed;
+    private float horizontalSpeed; //…•½ˆÚ“®‘¬“x
 
-    private float maxFallS = 15.0f;
-    private float G = 60.0f;
-    private float verticalS;
+    [SerializeField]
+    private float maxMoveSpeed = 5.0f;//Å‘åˆÚ“®‘¬“x
 
-    private float kasoku = 10f;
-    private float masatsu = 10f;
-    private float airControl = 0.3f;
+    [SerializeField]
+    private float maxFallSpeed = 20.0f;//Å‘å—‰º‘¬“x
 
-    private float jumpS = 25.0f;
-    private int JCount;
-    private int Jump = 1;
+    [SerializeField]
+    private float gravity = 60.0f;//d—Í
 
-    private Animator anime;
+    private float verticalSpeed; //‚’¼ˆÚ“®“x
+
+    [SerializeField]
+    private float jumpSpeed = 20.0f;//ƒWƒƒƒ“ƒv‘¬“x
+
+    [SerializeField]
+    private float acceleration = 10.0f;//‰Á‘¬“x
+
+    [SerializeField]
+    private float friction = 10.0f;//–€CŒW”
+
+    [SerializeField]
+    private float airControl = 0.3f;//‹ó’†“ü—Í‘€ì‚Ì•â³’l
+
+    private Animator animator;//ƒAƒjƒ[ƒ^‚Ìƒpƒ‰ƒ[ƒ^
+
+    //[SerializeField]
+    //private Text coinText;
+
+    //private int coinCount;//Šl“¾ƒRƒCƒ“–‡”
+
+    //[SerializeField]
+    //private Transform spawnPoint;
+
+    //[SerializeField]
+    //private Text lifeText;
+
+    //[SerializeField]
+    //private int life = 5;
+
+    [SerializeField]
+    private float pushPower = 0.75f; //‰Ÿ‚·—Í
+
+    private Transform activeFloor; //“¥‚ñ‚Å‚¢‚é°
+
+    private Vector3 activeLocalFloorPoint; //°‚ğŠî€‚É‚µ‚½‚Ì‘Š‘ÎˆÊ’u
+
+    private Vector3 activeGlobalFloorPoint; //¢ŠE‚ğŠî€‚É‚µ‚½‚Ì‘Š‘ÎˆÊ’u
+
+    private int airFrame; //‹ó’†‚É‚¢‚éŠÔiƒtƒŒ[ƒ€j
+
+    private int ab = 1;
+
     // Start is called before the first frame update
     void Start()
     {
         controller = GetComponent<CharacterController>();
-        anime = GetComponent<Animator>();
-        JCount = Jump;
+        animator = GetComponent<Animator>();
+        //Spawn();
+        ////UI•\¦XV
+        //UpdateCoinText();
+        //UpdateLifeText();
     }
 
     // Update is called once per frame
     void Update()
     {
-        //æ‰‹å‰ã¿ã
-        //float Hori = Input.GetAxisRaw("Horizontal");
 
-        //Vector3 move;
-        //move.x = Hori * maxMoveS;
-        //move.y = 0;
-        //move.z = 0;
-        //controller.Move(move * Time.deltaTime);
+            //d—Íˆ—
+            UpdateGravity();
 
-        UpdateDirection();
-        UpdateMovement();
-        UpdateGravity();
-        UpdateJump();
+            //ƒWƒƒƒ“ƒvˆ—
+            UpdateJump();
+
+            //is•ûŒüXVˆ—
+            UpdateDirection();
+
+            //ˆÚ“®XVˆ—
+            UpdateMovement();
+        
     }
 
+    //is•ûŒüXVˆ—
     private void UpdateDirection()
     {
-        float Hori = Input.GetAxisRaw("Horizontal");
+        //…•½•ûŒü“ü—Íî•ñæ“¾
+        float horizontal = Input.GetAxisRaw("Horizontal");
 
-        float power = Mathf.Abs(Hori);
-        if (power > 0.1f)
+        //‰Á‘¬ˆ—
+        float power = Mathf.Abs(horizontal);
+        if(power>0.1f)
         {
-            Vector3 direc = new Vector3(Hori, 0, 0);
-            transform.rotation = Quaternion.LookRotation(direc);
+            //…•½•ûŒü“ü—Íî•ñ‚©‚çis•ûŒü‚ğİ’è
+            Vector3 direction = new Vector3(horizontal, 0, 0);
 
+            //is•ûŒü‚ÉŒü‚­‚æ‚¤‚É‰ñ“]İ’è
+            transform.rotation = Quaternion.LookRotation(direction);
 
-            //åŠ é€Ÿè¨ˆç®—
-            float S = Hori * kasoku * Time.deltaTime;
-              //åå¯¾å‘ãæ¸›é€Ÿè¨ˆç®—
-            if (Mathf.Sign(horiSpeed)*Mathf.Sign(Hori) < 0) S *= 3;
-            
-            if (!controller.isGrounded)
+            //‰Á‘¬—Ê‚ğŒvZ
+            float speed = horizontal * acceleration * Time.deltaTime;
+
+            //‹ó’†‚É•‚‚¢‚Ä‚¢‚é‚ÍˆÚ“®’l‚ğ•â³‚·‚é
+            if(!controller.isGrounded)
             {
-                S *= airControl;
+                speed *= airControl;
+            }
+
+            //‰Á‘¬ˆ—
+            horizontalSpeed += speed;
+
+            //‘¬“x‚ªˆê’èˆÈã‚È‚ç§ŒÀ‚·‚é
+            if(Mathf.Abs(horizontalSpeed)>maxMoveSpeed)
+            {
+                horizontalSpeed = Mathf.Sign(horizontalSpeed) * maxMoveSpeed;
             }
             
-            horiSpeed += S;
-            if (Mathf.Abs(horiSpeed) > maxMoveS)
-            {
-                horiSpeed = Mathf.Sign(horiSpeed) * maxMoveS;
-            }
         }
+        //Œ¸‘¬ˆ—
         else
         {
-            //æ¸›é€Ÿè¨ˆç®—
-            if (Mathf.Abs(horiSpeed) > 0)
+            if(Mathf.Abs(horizontalSpeed)>0)
             {
-                float S = Mathf.Sign(horiSpeed) * masatsu * Time.deltaTime;
-                if (!controller.isGrounded)
+                //Œ¸‘¬—Ê‚ğŒvZ
+                float speed = Mathf.Sign(horizontalSpeed) * friction * Time.deltaTime;
+
+                //‹ó’†‚É•‚‚¢‚Ä‚¢‚é‚ÍˆÚ“®’l‚ğ•â³‚·‚é
+                if(!controller.isGrounded)
                 {
-                    S *= airControl;
+                    speed *= airControl;
                 }
-                horiSpeed -= S;
-                if (Mathf.Abs(horiSpeed) < masatsu * Time.deltaTime)
+
+                //Œ¸‘¬ˆ—
+                horizontalSpeed -= speed;
+
+                //‘¬“x‚ªˆê’èˆÈ‰º‚È‚ç~‚ß‚é
+                if(Mathf.Abs(horizontalSpeed)<friction*Time.deltaTime)
                 {
-                    horiSpeed = 0.0f;
+                    horizontalSpeed = 0.0f;
                 }
             }
         }
-        //horiSpeed = Hori * maxMoveS;
-        //ã‚¢ãƒ‹ãƒ¡
+        //’n–Ê‚ÉÚ’n‚µ‚Ä‚¢‚é
         if (controller.isGrounded)
         {
-            anime.SetFloat("Speed", power);
-        }
-        //Debug.Log(horiSpeed);
-    }
-    private void UpdateGravity()
-    {
-        if (controller.isGrounded)
-        {
-            verticalS = -G * Time.deltaTime;
-        }
-        else
-        {
-            verticalS -= G * Time.deltaTime;
-        }
-        verticalS = Mathf.Max(verticalS, -maxFallS);
-    }
-    private void UpdateJump()
-    {
-        if (controller.isGrounded)
-        {
-            JCount = Jump;
-        }
-        //if(controller.isGrounded)
-        if (JCount > 0)
-        {
-            if (Input.GetButtonDown("Jump"))
-            {
-                verticalS += jumpS;
-                anime.SetTrigger("Jump");
-                JCount--;
-            }
+            //ƒAƒjƒ[ƒ^[‚Éƒpƒ‰ƒ[ƒ^‚ğ‘—M
+            animator.SetFloat("Speed", power);
         }
     }
+
+    //ˆÚ“®XVˆ—
     private void UpdateMovement()
     {
-        anime.SetBool("Ground", controller.isGrounded);
-        Vector3 move = new Vector3(horiSpeed, verticalS, 0);
+        //ƒAƒjƒ[ƒ^‚Éƒpƒ‰ƒ[ƒ^‚ğ‘—M
+        animator.SetBool("Ground", controller.isGrounded);
+
+        //ˆÚ“®—Ê‚ğŒvZ
+        Vector3 move= new Vector3(horizontalSpeed, verticalSpeed, 0);
+
+        //°‚ÌˆÚ“®‚É’Ç]‚·‚éˆ—
+        if(activeFloor!=null)
+        {
+            //‘O‰ñ‚Ì°‚ğŠî€‚É‚µ‚½ˆÊ’u‚Æ¡‰ñ‚Ì°‚ÌˆÊ’u‚©‚ç¡‰ñ‚ÌƒOƒ[ƒoƒ‹Šî€‚ÌˆÊ’u‚ğZo
+            Vector3 newGlobalFloorPoint = activeFloor.TransformPoint(activeLocalFloorPoint);
+            //‘O‰ñ‚Æ¡‰ñ‚ÌƒOƒ[ƒoƒ‹Šî€‚ÌˆÊ’u‚Ì·•ª‚ğ‹‚ß‚é‚±‚Æ‚Å°‚ÌˆÚ“®—Ê‚ğZo‚·‚é
+            Vector3 moveDistance = newGlobalFloorPoint - activeGlobalFloorPoint;
+            //Œ»İ‚ÌˆÊ’u‚É°‚ÌˆÚ“®—Ê‚ğ‰ÁZ‚·‚é
+            controller.enabled = false;
+            transform.position += moveDistance;
+            controller.enabled = true;
+        }
+
+        //‹ó’†ŠÔXV
+        airFrame++;
+        if(airFrame>2)
+        {
+            activeFloor = null;
+        }
+
+        //ˆÚ“®ˆ—(‚±‚ÌŠÖ”“à‚ÅOnControllerColliderHitŠÖ”‚ªŒÄ‚Î‚ê‚é)
         controller.Move(move * Time.deltaTime);
+
+        //°‚ÌˆÚ“®—ÊZo‚Ì‚½‚ßA°‚ÌˆÊ’uî•ñ‚ğ‹L‰¯‚µ‚Ä‚¨‚­
+        if(activeFloor!=null)
+        {
+            //ƒOƒ[ƒoƒ‹Šî€‚ÌˆÊ’u‚Æ°‚ğŠî€‚Ì‚µ‚½ˆÊ’u‚ğ•Û‘¶
+            activeGlobalFloorPoint = transform.position;
+            activeLocalFloorPoint = activeFloor.InverseTransformPoint(transform.position);
+        }
     }
+
+    //d—Íˆ—
+    private void UpdateGravity()
+    {
+        //’n–Ê‚ÉÚ’n‚µ‚Ä‚¢‚é‚Æ‚«‚Ì‚’¼ˆÚ“®‘¬“x‚Íˆê’è‚Ìd—Í—Ê
+        if (controller.isGrounded)
+        {
+            verticalSpeed = -gravity * Time.deltaTime;
+        }
+        //‹ó’†‚Å‚Í‚’¼ˆÚ“®‘¬“x‚Éd—Í‚ğ‰ÁZ‚µ‚Ä‚¢‚­
+        else
+        {
+            verticalSpeed -= gravity * Time.deltaTime;
+        }
+        //‚’¼ˆÚ“®‘¬“x‚ªÅ‘å—‰º‘¬“x‚ğ’´‚¦‚È‚¢‚æ‚¤‚É§ŒÀ
+        verticalSpeed = Mathf.Max(verticalSpeed, -maxFallSpeed);
+    }
+
+    //ƒWƒƒƒ“ƒvˆ—
+    private void UpdateJump()
+    {
+        //’n–Ê‚ÉÚ’n‚µ‚Ä‚¢‚éó‘Ô‚ÅƒWƒƒƒ“ƒvƒ{ƒ^ƒ“‚ğ‰Ÿ‚·‚Æ‚’¼ˆÚ“®‘¬“x‚ğİ’è‚·‚é
+        if(controller.isGrounded)
+        {
+            if(Input.GetButtonDown("Jump"))
+            {
+                verticalSpeed = jumpSpeed;
+
+                //ƒAƒjƒ[ƒ^‚Éƒpƒ‰ƒ[ƒ^‚ğ‘—M
+                animator.SetTrigger("Jump");
+            }
+        }
+    }
+
+    //ƒRƒCƒ“UI•\¦XV
+    //private void UpdateCoinText()
+    //{
+    //    coinText.text = "x" + coinCount;
+    //}
+    ////ƒRƒCƒ“Šl“¾ˆ—
+    //public void AddCoin(int amount)
+    //{
+    //    coinCount += amount;
+
+    //    //UI•\¦XV
+    //    UpdateCoinText();
+    //}
+
+    //ŒÅ’èŠÔ–ˆXVˆ—
+    void FixedUpdate()
+    {
+        //”O‚Ì‚½‚ßZ²ˆÊ’u‚ª“®‚©‚È‚¢‚æ‚¤‚ÉŒÅ’è
+        transform.position = new Vector3(transform.position.x, transform.position.y, 0);
+    }
+
+    //ƒXƒ|[ƒ“
+    //private void Spawn()
+    //{
+    //    //ˆÚ“®—ÍƒŠƒZƒbƒg
+    //    verticalSpeed = 0.0f;
+    //    horizontalSpeed = 0.0f;
+
+
+    //    Warp(spawnPoint.position);
+    //}
+
+    //ƒ[ƒv
+    public void Warp(Vector3 position)
+    {
+        //¦ƒLƒƒƒ‰ƒNƒ^[ƒRƒ“ƒgƒ[ƒ‰[g—p‚É’¼ÚˆÊ’u‚ğ•ÏX‚·‚éê‡‚ª‚ ‚Í
+        //@ƒLƒƒƒ‰ƒNƒ^[ƒRƒ“ƒgƒ[ƒ‰[‚ğ–³Œø‰»‚µ‚Ä‚©‚çİ’è‚·‚é•K—v‚ª‚ ‚é
+        controller.enabled = false;
+        transform.position = position;
+        controller.enabled = true;
+    }
+
+    //€–Sˆ—
+    //public void Death()
+    //{
+    //    //ƒ‰ƒCƒt‚ğŒ¸‚ç‚·
+    //    life--;
+    //    if(life<=0)
+    //    {
+    //        //Œ»İ‚ÌƒV[ƒ“‚ğÄƒ[ƒh
+    //        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    //    }
+    //    //UI•\¦XV
+    //    UpdateLifeText();
+    //    //ƒXƒ|[ƒ“
+    //    Spawn();
+    //}
+
+    ////ƒ‰ƒCƒtUI•\¦XV
+    //private void UpdateLifeText()
+    //{
+    //    lifeText.text = "x" + life;
+    //}
+
+    ////ƒXƒ|[ƒ“ƒ|ƒCƒ“ƒgİ’è
+    //public void SetSpawnPoint(Transform transform)
+    //{
+    //    spawnPoint = transform;
+    //}
+
+    //CharacterController‚ÌˆÚ“®‚ÅƒRƒ‰ƒCƒ_[‚ÆÕ“Ë‚µ‚½Û‚ÉŒÄ‚Î‚ê‚é
     private void OnControllerColliderHit(ControllerColliderHit hit)
     {
-        //ã‚³ãƒ©ã‚¤ãƒ€ãƒ¼ã¨ã®è¡çªæ™‚ã«å‘¼ã¶
+        //„‘Ì‚ğ‰Ÿ‚·
+        PushRigidbody(hit);
+
+        //“Vˆäƒ`ƒFƒbƒN
         CeilingCheck(hit);
+
+        //ƒfƒXƒgƒŠƒK[‚Æ‚ÌÕ“Ëˆ—
+        //CollisionDeathTrigger(hit);
+
+        //°ƒ`ƒFƒbƒN
+        FloorCheck(hit);
     }
+
+    //“Vˆäƒ`ƒFƒbƒN
     private void CeilingCheck(ControllerColliderHit hit)
     {
+        //“–‚½‚Á‚½–Ê‚ÌŒü‚«‚ª‰º•ûŒü‚¾‚Á‚½‚ç“Vˆä
         if (hit.normal.y < -0.8f)
         {
-            if (verticalS > 0.0f)
+            //ã•ûŒü‚É—Í‚ª“­‚Ä‚¢‚éê‡‚ÍƒŠƒZƒbƒg
+            if(verticalSpeed>0.0f)
             {
-                verticalS = 0;
+                verticalSpeed = 0.0f;
             }
+        }
+    }
+
+    //ÚG‚µ‚½„‘Ì‚ğ‰Ÿ‚·
+    private void PushRigidbody(ControllerColliderHit hit)
+    {
+        Rigidbody body = hit.collider.attachedRigidbody;
+
+        //ƒŠƒWƒbƒhƒfƒBƒ`ƒFƒbƒN
+        if(body==null||body.isKinematic)
+        {
+            return;
+        }
+        //‰ºŒü‚«‚É‚Í‰Ÿ‚³‚È‚¢
+        if(hit.moveDirection.y<-0.3f)
+        {
+            return;
+        }
+        //ˆÚ“®•ûŒü‚©‚ç‰Ÿ‚·•ûŒü‚ğZo‚·‚é(ã‰º•ûŒü‚É‚Í‰Ÿ‚³‚È‚¢)
+        Vector3 pushDir = new Vector3(hit.moveDirection.x, 0, hit.moveDirection.z);
+        Vector3 pushVelocity = pushDir * pushPower;
+        pushVelocity.y = body.velocity.y;
+        //‰Ÿ‚·—Í‚ğİ’è
+        body.velocity = pushVelocity;
+    }
+
+    //ƒfƒXƒgƒŠƒK[‚Æ‚ÌÕ“Ëˆ—
+    //private void CollisionDeathTrigger(ControllerColliderHit hit)
+    //{
+    //    //ƒfƒXƒgƒŠƒK[‚ÆÕ“Ë‚µ‚½‚ç€–S‚·‚é
+    //    DeathTrigger deathTrigger =hit.gameObject.GetComponent<DeathTrigger>();
+    //    if(deathTrigger!=null)
+    //    {
+    //        Death();
+    //    }
+    //}
+
+    //°ƒ`ƒFƒbƒN
+    private void FloorCheck(ControllerColliderHit hit)
+    {
+        //“–‚½‚Á‚½–Ê‚ÌŒü‚«‚ªã•ûŒü‚¾‚Á‚½‚ç°
+        if(hit.normal.y>0.9f)
+        {
+            //“¥‚ñ‚Å‚¢‚é°‚ğ‹L‰¯
+            activeFloor = hit.collider.transform;
+            //‹ó’†ŠÔ‚ğƒŠƒZƒbƒg
+            airFrame = 0;
         }
     }
 }

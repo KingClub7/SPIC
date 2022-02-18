@@ -38,7 +38,7 @@ public class MFloor : MonoBehaviour
                 theta += Mathf.PI * 2.0f * (1.0f / time) * Time.deltaTime;
             }
             //取得
-            float c = Mathf.Sin(theta);
+            float c = Mathf.Cos(theta);
             //変換
             c = (1.0f - c) * 0.5f;
             //元から目的地まで往復する座標算出
