@@ -6,7 +6,7 @@ using UnityEngine;
 public class Gauge : MonoBehaviour
 {
     public Image BGauge;
-    private float MaxGauge = 1.0f;
+    private float MaxGauge = 10.0f;
     public static bool BScore;
     private float TimerC;
     private float Timer;
