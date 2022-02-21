@@ -44,6 +44,8 @@ public class RotateBox : MonoBehaviour
 
     private bool floorR=false;
 
+    private Player pl;
+
     //[SerializeField]
     //private Material emptyBoxMaterial;//マテリアル
 
@@ -51,7 +53,8 @@ public class RotateBox : MonoBehaviour
     void Start()
     {
         position = originalPosition = transform.position;
-        
+        GameObject obj = GameObject.Find("Player");
+        pl = obj.GetComponent<Player>();
     }
 
     // Update is called once per frame
@@ -59,24 +62,30 @@ public class RotateBox : MonoBehaviour
     {
         
         //箱が揺れる処理
-        if (isMoving)
-        {
-            verticalSpeed -= gravity * Time.deltaTime;
-            position.y += verticalSpeed;
-            if (position.y < originalPosition.y)
-            {
-                position.y = originalPosition.y;
-                isMoving = false;
-            }
-            transform.position = position;
-        }
+        //if (isMoving)
+        //{
+        //    verticalSpeed -= gravity * Time.deltaTime;
+        //    position.y += verticalSpeed;
+        //    if (position.y < originalPosition.y)
+        //    {
+        //        position.y = originalPosition.y;
+        //        isMoving = false;
+        //    }
+        //    transform.position = position;
+        //}
 
         if (floorR)
         {
-            if(Boxtime>1.0f)
+            if(Boxtime<1.0f)
             target.Rotate(0, 0, 180 * Time.deltaTime);
         }
         Boxtime += Time.deltaTime;
+        if (Boxtime >= 1.0f)
+        {
+            floorR = false;
+            Boxtime = 0;
+            //pl.lnversionbool();
+        }
     }
     //箱の下側に当たった時の処理
     private void OnTriggerEnter(Collider other)
@@ -93,8 +102,9 @@ public class RotateBox : MonoBehaviour
 
             if (target != null)
             {
+
                 //目標地点へ補完しながら移動
-                target.Rotate(0, 0, 180);
+                //target.Rotate(0, 0, 180);
                 //target.rotation = Quaternion.Lerp(target.rotation, target2.rotation, smoothness);
                 //target.position = Vector3.Lerp(transform.position, target.position, smoothness);
             }

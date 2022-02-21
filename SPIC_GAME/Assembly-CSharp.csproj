@@ -66,8 +66,11 @@
   <ItemGroup>
     <Compile Include="Assets\C#\BreakB.cs" />
     <Compile Include="Assets\C#\BreakB_G.cs" />
+    <Compile Include="Assets\C#\BreakB_R.cs" />
     <Compile Include="Assets\C#\Camera.cs" />
     <Compile Include="Assets\C#\CameraController.cs" />
+    <Compile Include="Assets\C#\ClearBox.cs" />
+    <Compile Include="Assets\C#\ClearUI.cs" />
     <Compile Include="Assets\C#\EfeOBJ.cs" />
     <Compile Include="Assets\C#\Efect.cs" />
     <Compile Include="Assets\C#\ElevatorSC.cs" />
@@ -78,6 +81,7 @@
     <Compile Include="Assets\C#\Player.cs" />
     <Compile Include="Assets\C#\PlayerR.cs" />
     <Compile Include="Assets\C#\PlayerSelect.cs" />
+    <Compile Include="Assets\C#\Player_a.cs" />
     <Compile Include="Assets\C#\RotateBox.cs" />
     <Compile Include="Assets\C#\Seisei.cs" />
     <Compile Include="Assets\C#\SelectCamera.cs" />

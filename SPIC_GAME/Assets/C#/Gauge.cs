@@ -6,7 +6,7 @@ using UnityEngine;
 public class Gauge : MonoBehaviour
 {
     public Image BGauge;
-    private float MaxGauge = 5.0f;
+    private float MaxGauge = 1.0f;
     public static bool BScore;
     private float TimerC;
     private float Timer;
@@ -14,6 +14,7 @@ public class Gauge : MonoBehaviour
 
     //要らないやつ
     public static bool botan;
+    public static bool rockColor;
     // Start is called before the first frame update
     void Start()
     {
@@ -23,12 +24,13 @@ public class Gauge : MonoBehaviour
         Timer = 0;
         TimerC = 0;
         botan = false;
+        rockColor = false;
     }
 
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(BGauge.fillAmount);
+        //Debug.Log(BGauge.fillAmount);
         //ゲージ使用
         if (Input.GetKeyDown(KeyCode.P)&&BGauge.fillAmount >=1)
         {
@@ -43,6 +45,7 @@ public class Gauge : MonoBehaviour
             {
                 BGauge.fillAmount = 0;
                 botan = false;
+                rockColor = false;
             }
         }
 
@@ -56,6 +59,7 @@ public class Gauge : MonoBehaviour
         //ゲージマックス字の点滅
         if(BGauge.fillAmount >= 1.0f && !botan)
         {
+            rockColor = true;
             Timer += Time.deltaTime;
             //演出
             if (TimerC >= 1)
