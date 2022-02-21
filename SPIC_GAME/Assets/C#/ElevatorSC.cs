@@ -7,7 +7,7 @@ public class ElevatorSC : MonoBehaviour
     public Transform PushTR;
     public Transform PushTL;
     private Vector3 originalT;
-    private float move = 1;
+    [SerializeField]private float move = 1;
     private int moveCount;
     private float moveMax = 5;
     private float Timer;

@@ -8,8 +8,8 @@ public class BreakB : MonoBehaviour
     private float impulse = 4.0f;
     [SerializeField]
     private GameObject destroyBoxPrefab;
+    [SerializeField] private float Destime = 0.7f;
 
-    
     // Start is called before the first frame update
     void Start()
     {
@@ -27,7 +27,6 @@ public class BreakB : MonoBehaviour
         Player player = other.GetComponent<Player>();
         if (player != null)
         {
-            //Gauge.BScore = true;
             //Debug.Log("bbb");
             GameObject destroyBox = Instantiate(destroyBoxPrefab,
                                     transform.position, transform.rotation);
@@ -41,7 +40,7 @@ public class BreakB : MonoBehaviour
                     ForceMode.Impulse
                     );
             };
-            Destroy(destroyBox, 0.7f);
+            Destroy(destroyBox, Destime);
             Destroy(gameObject);
         }
     }

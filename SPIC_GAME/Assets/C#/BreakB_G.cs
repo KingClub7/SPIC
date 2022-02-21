@@ -8,7 +8,7 @@ public class BreakB_G : MonoBehaviour
     private float impulse = 4.0f;
     [SerializeField]
     private GameObject destroyBoxPrefab;
-
+    [SerializeField] private float Destime = 0.7f;
     
     // Start is called before the first frame update
     void Start()
@@ -41,7 +41,7 @@ public class BreakB_G : MonoBehaviour
                     ForceMode.Impulse
                     );
             };
-            Destroy(destroyBox, 0.7f);
+            Destroy(destroyBox, Destime);
             Destroy(gameObject);
         }
     }

@@ -7,7 +7,7 @@ public class Seisei : MonoBehaviour
     [SerializeField]
     private GameObject SeiseiPrefab;
     private GameObject OBJ;
-
+    [SerializeField] private float IposY = 1.0f;
     bool hakai;
 
     // Start is called before the first frame update
@@ -55,7 +55,7 @@ public class Seisei : MonoBehaviour
     private void OBJInstant()
     {
         //Instantiate(SeiseiPrefab, transform.TransformPoint(0, 2.5f, 0), Quaternion.identity,transform);
-        OBJ = Instantiate(SeiseiPrefab, transform.TransformPoint(0, 2.5f, 0), Quaternion.identity);
+        OBJ = Instantiate(SeiseiPrefab, transform.TransformPoint(0, IposY, 0), Quaternion.identity);
         OBJ.transform.parent = transform;
     }
 }
