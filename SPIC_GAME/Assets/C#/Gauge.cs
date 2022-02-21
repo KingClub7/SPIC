@@ -13,7 +13,7 @@ public class Gauge : MonoBehaviour
     private float colorChange;
 
     //要らないやつ
-    private bool botan;
+    public static bool botan;
     // Start is called before the first frame update
     void Start()
     {

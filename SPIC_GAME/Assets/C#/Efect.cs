@@ -26,7 +26,7 @@ public class Efect : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.P))
+        if(Gauge.botan)
         {
             EfeStart = true;
         }

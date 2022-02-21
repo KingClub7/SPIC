@@ -54,7 +54,7 @@ public class ElevatorSC : MonoBehaviour
             //ElevatorSR.elevatorSR = false;
             //PlayerJump = false;
          }
-        Debug.Log(moveCount);
+        //Debug.Log(moveCount);
         //スイッチ移動
         //if (PushTL.transform.localPosition.y > 0.013f)
         //{

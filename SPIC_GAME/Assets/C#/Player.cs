@@ -88,7 +88,11 @@ public class Player : MonoBehaviour
 
             //移動更新処理
             UpdateMovement();
-        
+
+        if (controller.isGrounded)
+        {
+            print("CharacterController is grounded");
+        }
     }
 
     //進行方向更新処理
@@ -109,9 +113,10 @@ public class Player : MonoBehaviour
 
             //加速量を計算
             float speed = horizontal * acceleration * Time.deltaTime;
-
+            //反転時だけ移動を早める
+            if (Mathf.Sign(horizontalSpeed) * Mathf.Sign(horizontal) < 0) speed *= 3;
             //空中に浮いている時は移動値を補正する
-            if(!controller.isGrounded)
+            if (!controller.isGrounded)
             {
                 speed *= airControl;
             }
@@ -225,7 +230,6 @@ public class Player : MonoBehaviour
             if(Input.GetButtonDown("Jump"))
             {
                 verticalSpeed = jumpSpeed;
-
                 //アニメータにパラメータを送信
                 animator.SetTrigger("Jump");
             }
