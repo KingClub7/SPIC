@@ -12,6 +12,7 @@ public class Player : MonoBehaviour
 
     [SerializeField]
     private float maxMoveSpeed = 5.0f;//最大移動速度
+    private float RunmaxMoveSpeed = 5.0f;//最大走り移動速度
 
     [SerializeField]
     private float maxFallSpeed = 20.0f;//最大落下速度
@@ -26,6 +27,7 @@ public class Player : MonoBehaviour
 
     [SerializeField]
     private float acceleration = 10.0f;//加速度
+    private float Runacceleration = 10.0f;//走り加速度
 
     [SerializeField]
     private float friction = 10.0f;//摩擦係数
@@ -62,6 +64,8 @@ public class Player : MonoBehaviour
 
     private int ab = 1;
 
+    private bool run;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -89,10 +93,21 @@ public class Player : MonoBehaviour
             //移動更新処理
             UpdateMovement();
 
-        if (controller.isGrounded)
+        if (Input.GetKey(KeyCode.N)/*GetKeyDown(KeyCode.N)*/&& controller.isGrounded)
         {
-            print("CharacterController is grounded");
+            RunmaxMoveSpeed = maxMoveSpeed*2;
+            Runacceleration = acceleration;
+            run = true;
         }
+        else 
+        {
+            RunmaxMoveSpeed = 0;
+            Runacceleration = 0;
+            run = false;
+        }
+        
+        animator.SetBool("Run", run);
+        Debug.Log(horizontalSpeed);
     }
 
     //進行方向更新処理
@@ -110,9 +125,9 @@ public class Player : MonoBehaviour
 
             //進行方向に向くように回転設定
             transform.rotation = Quaternion.LookRotation(direction);
-
+            float AC = acceleration /*+ Runacceleration*/;
             //加速量を計算
-            float speed = horizontal * acceleration * Time.deltaTime;
+            float speed =  AC * horizontal * Time.deltaTime;
             //反転時だけ移動を早める
             if (Mathf.Sign(horizontalSpeed) * Mathf.Sign(horizontal) < 0) speed *= 3;
             //空中に浮いている時は移動値を補正する
@@ -125,9 +140,9 @@ public class Player : MonoBehaviour
             horizontalSpeed += speed;
 
             //速度が一定以上なら制限する
-            if(Mathf.Abs(horizontalSpeed)>maxMoveSpeed)
+            if(Mathf.Abs(horizontalSpeed)>maxMoveSpeed+RunmaxMoveSpeed)
             {
-                horizontalSpeed = Mathf.Sign(horizontalSpeed) * maxMoveSpeed;
+                horizontalSpeed = Mathf.Sign(horizontalSpeed) * (maxMoveSpeed+RunmaxMoveSpeed);
             }
             
         }
