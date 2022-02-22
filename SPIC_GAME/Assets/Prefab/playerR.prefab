@@ -3288,7 +3288,7 @@ GameObject:
   - component: {fileID: 9188186932908784137}
   - component: {fileID: 561766493426170954}
   m_Layer: 0
-  m_Name: PlayerR
+  m_Name: playerR
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3367,6 +3367,14 @@ MonoBehaviour:
   friction: 20
   airControl: 0.5
   pushPower: 0.75
+  DamageTime: 0
+  materialss: {fileID: 2100000, guid: e45cc944046a2ab4baf10043ce48d9c5, type: 2}
+  OrigunslMaterial: {fileID: 3344614198196290667, guid: 9c4fae2706fac554d93641c5c3124d4f,
+    type: 3}
+  materialMesh: {fileID: 2100000, guid: 5ed82f53a9787ac4c8463f2700bdff48, type: 2}
+  playerRotateTime: 0
+  cunt: 0
+  skinnedHelmed: {fileID: 0}
 --- !u!114 &561766493426170954
 MonoBehaviour:
   m_ObjectHideFlags: 0

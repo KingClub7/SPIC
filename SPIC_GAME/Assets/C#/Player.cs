@@ -49,7 +49,7 @@ public class Player : MonoBehaviour
     //private Text lifeText;
 
     //[SerializeField]
-    //private int life = 5;
+    private int life = 1;
 
     [SerializeField]
     private float pushPower = 0.75f; //押す力
@@ -66,11 +66,33 @@ public class Player : MonoBehaviour
 
     private bool run;
 
+    private bool Pupdate;
+
+    private bool isDamaged = false;//敵に当たったかどうか
+
+    public float DamageTime = 0;
+
+    [SerializeField]
+    private Material materialss;//ダメージマテリアル
+
+    [SerializeField]
+    private Material OrigunslMaterial;//元のマテリアル
+
+    [SerializeField]
+    private Material materialMesh;//ヘルメットのマテリアル
+
+    public float playerRotateTime;
+
+    public int cunt = 0;
+
+    [SerializeField]
+    private SkinnedMeshRenderer skinnedHelmed;
     // Start is called before the first frame update
     void Start()
     {
         controller = GetComponent<CharacterController>();
         animator = GetComponent<Animator>();
+        isDamaged = false;
         //Spawn();
         ////UI表示更新
         //UpdateCoinText();
@@ -84,14 +106,7 @@ public class Player : MonoBehaviour
             //重力処理
             UpdateGravity();
 
-            //ジャンプ処理
-            UpdateJump();
 
-            //進行方向更新処理
-            UpdateDirection();
-
-            //移動更新処理
-            UpdateMovement();
 
         if (Input.GetKey(KeyCode.N)/*GetKeyDown(KeyCode.N)*/&& controller.isGrounded)
         {
@@ -108,6 +123,92 @@ public class Player : MonoBehaviour
         
         animator.SetBool("Run", run);
         //Debug.Log(horizontalSpeed);
+        if (life >= 0)
+        {
+            //ジャンプ処理
+            UpdateJump();
+
+            //進行方向更新処理
+            UpdateDirection();
+
+
+            if (isDamaged)
+            {
+                //点滅開始
+                if (cunt < 10)
+                {
+                    if (DamageTime < 0.1)
+                    {
+                        foreach (SkinnedMeshRenderer body in this.GetComponentsInChildren<SkinnedMeshRenderer>())
+                        {
+
+                            if (materialss)
+                                body.material = materialss;
+                        }
+                    }
+                    else if (DamageTime >= 0.1)
+                    {
+                        foreach (SkinnedMeshRenderer body in this.GetComponentsInChildren<SkinnedMeshRenderer>())
+                        {
+
+                            if (OrigunslMaterial)
+                                body.material = OrigunslMaterial;
+                        }
+                        skinnedHelmed.material = materialMesh;
+                    }
+                    if (DamageTime > 0.2)
+                    {
+                        DamageTime = 0;
+                        cunt++;
+                    }
+                }
+                DamageTime += Time.deltaTime;
+                //点滅停止
+                if (cunt >= 10)
+                {
+                    foreach (SkinnedMeshRenderer body in this.GetComponentsInChildren<SkinnedMeshRenderer>())
+                    {
+
+                        if (OrigunslMaterial)
+                            body.material = OrigunslMaterial;
+                    }
+                    skinnedHelmed.material = materialMesh;
+                    cunt = 0;
+                    isDamaged = false;
+                    DamageTime = 0;
+
+                }
+
+            }
+        }
+        else if (life == -1)
+        {
+            //アニメーターにパラメータを送信
+            animator.SetFloat("Speed", 0.0f);
+            horizontalSpeed = 0.0f;
+            verticalSpeed = 20.0f;
+
+            life--;
+
+        }
+        else
+        {
+            //回転
+            if (playerRotateTime < 0.4f)
+            {
+                this.transform.Rotate(600 * Time.deltaTime, 0, 0);
+            }
+            playerRotateTime += Time.deltaTime;
+            if (playerRotateTime >= 0.4f)
+            {
+                playerRotateTime = 0;
+                cunt++;
+            }
+        }
+
+
+        //移動更新処理
+        UpdateMovement();
     }
 
     //進行方向更新処理
@@ -296,6 +397,11 @@ public class Player : MonoBehaviour
     //死亡処理
     public void Death()
     {
+        if (!isDamaged)
+        {
+            life -= 1;
+            isDamaged = true;
+        }
         //ライフを減らす
         //life--;
         //if (life <= 0)
@@ -331,10 +437,15 @@ public class Player : MonoBehaviour
         CeilingCheck(hit);
 
         //デストリガーとの衝突処理
-        //CollisionDeathTrigger(hit);
+        CollisionDeathTrigger(hit);
 
         //床チェック
         FloorCheck(hit);
+
+        if(life<0)
+        {
+            Destroy(hit.collider);
+        }
     }
 
     //天井チェック
@@ -381,7 +492,11 @@ public class Player : MonoBehaviour
         DeathTrigger deathTrigger = hit.gameObject.GetComponent<DeathTrigger>();
         if (deathTrigger != null)
         {
-            Death();
+            //点滅が終わっているか
+            if (!isDamaged)
+            {
+                Death();
+            }
         }
     }
 
@@ -396,5 +511,28 @@ public class Player : MonoBehaviour
             //空中時間をリセット
             airFrame = 0;
         }
+    }
+
+    //回転しているか判断
+    public void lnversionbool()
+    {
+        if (Pupdate)
+        {
+            Pupdate = false;
+        }
+        else
+        {
+            Pupdate = true;
+        }
+    }
+
+    public bool PlayerUpdateBool()
+    {
+        return Pupdate;
+    }
+
+    public int plLife()
+    {
+        return life;
     }
 }

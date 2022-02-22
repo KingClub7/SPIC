@@ -6,6 +6,8 @@ public class hitTrigger : MonoBehaviour
 {
     [SerializeField]
     private Object obj;
+    [SerializeField]
+    
     // Start is called before the first frame update
     //void Start()
     //{
@@ -25,7 +27,7 @@ public class hitTrigger : MonoBehaviour
         {
             //collide.enabled = false;
 
-            
+            if(player.plLife()>=0)
             Destroy(obj);
 
             //player.Death();
