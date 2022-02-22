@@ -72,6 +72,8 @@
     <Compile Include="Assets\C#\ClearBox.cs" />
     <Compile Include="Assets\C#\ClearUI.cs" />
     <Compile Include="Assets\C#\DeathTrigger.cs" />
+    <Compile Include="Assets\C#\DethEfect.cs" />
+    <Compile Include="Assets\C#\DethEfectApple.cs" />
     <Compile Include="Assets\C#\EfeOBJ.cs" />
     <Compile Include="Assets\C#\Efect.cs" />
     <Compile Include="Assets\C#\ElevatorSC.cs" />
