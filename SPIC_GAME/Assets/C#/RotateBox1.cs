@@ -27,7 +27,7 @@ public class RotateBox1 : MonoBehaviour
     private float verticalSpeed;//垂直移動速度
 
     [SerializeField]
-    private Transform target;//回転する基準の位置
+    private Transform target;//親の座標
 
 
 
@@ -40,8 +40,7 @@ public class RotateBox1 : MonoBehaviour
 
     private bool floorR=false;
 
-    [SerializeField]
-    private Player pl;
+    private Player player;
 
     //[SerializeField]
     //private Material emptyBoxMaterial;//マテリアル
@@ -63,7 +62,7 @@ public class RotateBox1 : MonoBehaviour
         {
             if (Boxtime < 1.0f)
             {
-                target.Rotate(0, 0, 90 * Time.deltaTime);
+                target.Rotate(0, 0, 180 * Time.deltaTime);
             }
             Boxtime += Time.deltaTime;
         }
@@ -72,14 +71,15 @@ public class RotateBox1 : MonoBehaviour
         {
             floorR = false;
             Boxtime = 0;
-            pl.lnversionbool();
+            player.lnversionbool();
+            player = null;
         }
     }
     //箱の下側に当たった時の処理
     private void OnTriggerEnter(Collider other)
     {
         //プレイヤーに衝突した場合
-        Player player = other.GetComponent<Player>();
+        player = other.GetComponent<Player>();
         if (player != null)
         {
             
@@ -90,7 +90,7 @@ public class RotateBox1 : MonoBehaviour
             if (target != null)
             {
                 floorR = true;
-                pl.lnversionbool();
+                player.lnversionbool();
 
             }
 

@@ -86,7 +86,6 @@
     <Compile Include="Assets\C#\PlayerR.cs" />
     <Compile Include="Assets\C#\PlayerSelect.cs" />
     <Compile Include="Assets\C#\Player_a.cs" />
-    <Compile Include="Assets\C#\RotateBox.cs" />
     <Compile Include="Assets\C#\RotateBox1.cs" />
     <Compile Include="Assets\C#\Seisei.cs" />
     <Compile Include="Assets\C#\SelectCamera.cs" />
