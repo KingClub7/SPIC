@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(CharacterController))]
+//[RequireComponent(typeof(CharacterController))]
 public class Enemy1 : MonoBehaviour
 {
 
@@ -43,10 +43,11 @@ public class Enemy1 : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        if (pl.PlayerUpdateBool())
-        {
+        //if (pl.PlayerUpdateBool())
+        //{
             if (floorMove)
             {
+                Debug.Log("aaa");
                 //指定時間で1周する計算
                 if (time != 0)
                 {
@@ -71,7 +72,7 @@ public class Enemy1 : MonoBehaviour
                 //回転
                 if (rotateTime < 0.5f)
                 {
-                    movefloorT.Rotate(0, 180 * Time.deltaTime, 0);
+                    movefloorT.Rotate(0, 180 * 2 * Time.deltaTime, 0);
                 }
                 rotateTime += Time.deltaTime;
             }
@@ -81,8 +82,8 @@ public class Enemy1 : MonoBehaviour
                 floorRotate = false;
                 rotateTime = 0;
             }
-
-        }
+        
+        //}
     }
     private void OnTriggerEnter(Collider other)
     {
