@@ -7,10 +7,12 @@ public class Camera : MonoBehaviour
     [SerializeField]
     private Transform target;
     private float smoothness = 0.1f;
+    private Vector3 cameraP;
     // Start is called before the first frame update
     void Start()
     {
-
+        cameraP = new Vector3(-1, 2, 0);
+        smoothness = 0.1f;
     }
 
     // Update is called once per frame
@@ -18,7 +20,7 @@ public class Camera : MonoBehaviour
     {
         if (target != null)
         {
-            transform.position = Vector3.Lerp(transform.position, target.position, smoothness);
+            transform.position = Vector3.Lerp(transform.position, target.position+cameraP, smoothness);
         }
     }
 }

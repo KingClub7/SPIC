@@ -3363,8 +3363,8 @@ MonoBehaviour:
   gravity: 60
   jumpSpeed: 28
   acceleration: 10
-  friction: 10
-  airControl: 0.3
+  friction: 20
+  airControl: 0.5
   pushPower: 0.75
 --- !u!1 &8424454518848034914
 GameObject:

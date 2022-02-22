@@ -31,7 +31,7 @@ public class SelectCube : MonoBehaviour
                 switch(stage)
                 {
                     case 1: 
-                        SceneManager.LoadScene("SampleScene");
+                        SceneManager.LoadScene("Stage1");
                         break;
                     case 2: 
                         SceneManager.LoadScene("SampleScene");

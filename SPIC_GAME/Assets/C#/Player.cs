@@ -129,7 +129,7 @@ public class Player : MonoBehaviour
             //‰Á‘¬—Ê‚ğŒvZ
             float speed =  AC * horizontal * Time.deltaTime;
             //”½“]‚¾‚¯ˆÚ“®‚ğ‘‚ß‚é
-            if (Mathf.Sign(horizontalSpeed) * Mathf.Sign(horizontal) < 0) speed *= 3;
+            if (Mathf.Sign(horizontalSpeed) * Mathf.Sign(horizontal) < 0) speed *= 5;
             //‹ó’†‚É•‚‚¢‚Ä‚¢‚é‚ÍˆÚ“®’l‚ğ•â³‚·‚é
             if (!controller.isGrounded)
             {

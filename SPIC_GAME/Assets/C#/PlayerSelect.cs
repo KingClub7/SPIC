@@ -98,6 +98,10 @@ public class PlayerSelect : MonoBehaviour
                 if (direction < 0) moveCount--;
             }
         }
+
+        //走りモーション
+        if(Mathf.Abs(horiB)>0) animator.SetBool("Run", true);
+        else animator.SetBool("Run", false);
         //ジャンプ処理
         UpdateJump();
         //Debug.Log();
@@ -141,7 +145,7 @@ public class PlayerSelect : MonoBehaviour
             if (Input.GetButtonDown("Jump"))
             {
                 verticalSpeed = jumpSpeed;
-                Vector3 forward = new Vector3(direction, 0, 0);
+                Vector3 forward = new Vector3(0, direction, 0);
                 transform.rotation = Quaternion.LookRotation(forward);
                 Vector3 move = new Vector3(0, jumpSpeed, jumpSpeedForwqrd);
                 controller.Move(move);
