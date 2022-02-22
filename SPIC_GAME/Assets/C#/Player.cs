@@ -294,20 +294,20 @@ public class Player : MonoBehaviour
     }
 
     //死亡処理
-    //public void Death()
-    //{
-    //    //ライフを減らす
-    //    life--;
-    //    if(life<=0)
-    //    {
-    //        //現在のシーンを再ロード
-    //        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-    //    }
-    //    //UI表示更新
-    //    UpdateLifeText();
-    //    //スポーン
-    //    Spawn();
-    //}
+    public void Death()
+    {
+        //ライフを減らす
+        //life--;
+        //if (life <= 0)
+        //{
+        //    //現在のシーンを再ロード
+        //    SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        //}
+        ////UI表示更新
+        //UpdateLifeText();
+        ////スポーン
+        //Spawn();
+    }
 
     ////ライフUI表示更新
     //private void UpdateLifeText()
@@ -375,15 +375,15 @@ public class Player : MonoBehaviour
     }
 
     //デストリガーとの衝突処理
-    //private void CollisionDeathTrigger(ControllerColliderHit hit)
-    //{
-    //    //デストリガーと衝突したら死亡する
-    //    DeathTrigger deathTrigger =hit.gameObject.GetComponent<DeathTrigger>();
-    //    if(deathTrigger!=null)
-    //    {
-    //        Death();
-    //    }
-    //}
+    private void CollisionDeathTrigger(ControllerColliderHit hit)
+    {
+        //デストリガーと衝突したら死亡する
+        DeathTrigger deathTrigger = hit.gameObject.GetComponent<DeathTrigger>();
+        if (deathTrigger != null)
+        {
+            Death();
+        }
+    }
 
     //床チェック
     private void FloorCheck(ControllerColliderHit hit)
