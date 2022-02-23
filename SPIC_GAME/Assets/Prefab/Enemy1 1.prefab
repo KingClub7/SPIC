@@ -41,7 +41,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4924715897147191440}
   - component: {fileID: 4924715897147191438}
-  - component: {fileID: 4924715897147191441}
+  - component: {fileID: 3680803215572713465}
   m_Layer: 0
   m_Name: enemyHit
   m_TagString: Untagged
@@ -76,7 +76,7 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1.5, y: 1, z: 1.5}
   m_Center: {x: 0, y: -1.6, z: 0}
---- !u!114 &4924715897147191441
+--- !u!114 &3680803215572713465
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -89,6 +89,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   obj: {fileID: 4924715896666002177}
+  desPrefab: {fileID: 6680742066988477147, guid: 8a43f0cd4e30a0640953c4aa278ae34d,
+    type: 3}
 --- !u!1 &4924715897427194012
 GameObject:
   m_ObjectHideFlags: 0
@@ -99,7 +101,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4924715897427194013}
   - component: {fileID: 4924715897427194011}
-  - component: {fileID: 4924715897427194010}
+  - component: {fileID: 8834021619256159110}
   m_Layer: 0
   m_Name: enemyDame
   m_TagString: Untagged
@@ -116,7 +118,7 @@ Transform:
   m_GameObject: {fileID: 4924715897427194012}
   m_LocalRotation: {x: -0, y: 0.7071068, z: -0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0.2, z: 0}
-  m_LocalScale: {x: 0.09999998, y: 0.1, z: 0.09999998}
+  m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
   m_Children: []
   m_Father: {fileID: 4887147186511602855}
   m_RootOrder: 3
@@ -132,9 +134,9 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 2, y: 1.8, z: 3}
-  m_Center: {x: 0, y: -0.1, z: 0}
---- !u!114 &4924715897427194010
+  m_Size: {x: 3, y: 2.2, z: 2}
+  m_Center: {x: -0.1, y: -0.1, z: 0}
+--- !u!114 &8834021619256159110
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -178,7 +180,7 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &4924715897472495848
+--- !u!114 &3557465104988984757
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -191,8 +193,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   move: {x: -2, y: 0, z: 0}
-  time: 2
-  floorMove: 1
+  time: 1
+  floorMove: 0
   movefloorT: {fileID: 4887147186511602855}
   collide: {fileID: 0}
 --- !u!1001 &4924715898397229900

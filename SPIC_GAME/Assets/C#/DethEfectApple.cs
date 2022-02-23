@@ -20,7 +20,7 @@ public class DethEfectApple : MonoBehaviour
         EfeTime = 0;
         EfeTimeCount = 0;
         EfeStart = false;
-        Destroy(gameObject, 4.0f);
+        Destroy(gameObject, 1.0f);
     }
 
     // Update is called once per frame
@@ -42,9 +42,9 @@ public class DethEfectApple : MonoBehaviour
     {
         if (EfeTime >= 0.001f)
         {
-            rnda = Random.Range(-0.6f, 0.6f);
-            rndb = Random.Range(-0.6f, 0.6f);
-            rndc = Random.Range(-0.6f, 0.6f);
+            rnda = Random.Range(-0.002f, 0.002f);
+            rndb = Random.Range(-0.002f, 0.002f);
+            rndc = Random.Range(-0.002f, 0.002f);
             OBJ = Instantiate(boxPrefab, transform.TransformPoint(rnda, rndb, rndc), Quaternion.identity);
             //OBJ.transform.parent = transform;
             EfeTime = 0;

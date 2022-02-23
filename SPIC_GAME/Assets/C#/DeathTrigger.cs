@@ -20,9 +20,12 @@ public class DeathTrigger : MonoBehaviour
     {
         //ƒvƒŒƒCƒ„[€–Sˆ—
         Player player = other.GetComponent<Player>();
-        if (player != null)
-        {
-            player.Death();
-        }
+        PlayerRX player2 = other.GetComponent<PlayerRX>();
+        PlayerRX2 player3 = other.GetComponent<PlayerRX2>();
+        PlayerRX3 player4 = other.GetComponent<PlayerRX3>();
+        if (player != null)player.Death();
+        if (player2 != null)player2.Death();
+        if (player3 != null)player2.Death();
+        if (player4 != null)player2.Death();
     }
 }

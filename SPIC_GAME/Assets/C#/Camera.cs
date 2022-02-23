@@ -8,6 +8,7 @@ public class Camera : MonoBehaviour
     private Transform target;
     [SerializeField]
     private Player pl;
+    private PlayerRX pl2;
     private float smoothness = 0.1f;
     private Vector3 cameraP;
     // Start is called before the first frame update
@@ -20,7 +21,7 @@ public class Camera : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (pl.plLife() >= 0)
+        if (pl.plLife() >= 0 || pl2.plLife() >= 0)
         {
             if (target != null)
             {

@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 3267281239589267723}
   - component: {fileID: 3267281239589267722}
-  - component: {fileID: 3267281239589267721}
   m_Layer: 0
   m_Name: GameObject (2)
   m_TagString: Untagged
@@ -45,18 +44,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1.1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &3267281239589267721
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3267281239589267724}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4f0147cc57dd8c947b1562405aed96aa, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &3267281240748213774
 GameObject:
   m_ObjectHideFlags: 0
@@ -67,7 +54,6 @@ GameObject:
   m_Component:
   - component: {fileID: 3267281240748213773}
   - component: {fileID: 3267281240748213771}
-  - component: {fileID: 3267281240748213772}
   m_Layer: 0
   m_Name: GameObject_a
   m_TagString: Untagged
@@ -102,19 +88,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.6, y: 1.1, z: 0.6}
   m_Center: {x: 0, y: -0.65, z: 0}
---- !u!114 &3267281240748213772
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3267281240748213774}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a3979527b8b881940996ed64e388cab7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  obj: {fileID: 3267281241669396156}
 --- !u!1 &3267281241669396156
 GameObject:
   m_ObjectHideFlags: 0
@@ -127,9 +100,8 @@ GameObject:
   - component: {fileID: 3267281241669396133}
   - component: {fileID: 3267281241669396134}
   - component: {fileID: 3267281241669396153}
-  - component: {fileID: 3267281241669396154}
   m_Layer: 0
-  m_Name: Cube2 (3) 1
+  m_Name: Enemy1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -216,20 +188,3 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &3267281241669396154
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3267281241669396156}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0e7892e37bceb124caab348b994f7f66, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  move: {x: -2, y: 0, z: 0}
-  time: 2
-  floorMove: 0
-  movefloorT: {fileID: 3267281241669396155}
-  collide: {fileID: 0}

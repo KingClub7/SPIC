@@ -87,6 +87,11 @@ public class Player : MonoBehaviour
 
     [SerializeField]
     private SkinnedMeshRenderer skinnedHelmed;
+
+    public GameObject levelup;
+    public GameObject leveldown;
+
+    public static bool levelupbool;
     // Start is called before the first frame update
     void Start()
     {
@@ -98,6 +103,7 @@ public class Player : MonoBehaviour
         ////UI表示更新
         //UpdateCoinText();
         //UpdateLifeText();
+        PlayerRX.level = 1;
     }
 
     // Update is called once per frame
@@ -108,7 +114,8 @@ public class Player : MonoBehaviour
             //重力処理
             UpdateGravity();
 
-
+            //アイテム処理
+            GetItem();
 
             if (Input.GetKey(KeyCode.N)/*GetKeyDown(KeyCode.N)*/&& controller.isGrounded)
             {
@@ -403,7 +410,11 @@ public class Player : MonoBehaviour
         if (!isDamaged)
         {
             life -= 1;
-            isDamaged = true;
+            //別で使う      
+            if(life < 0)isDamaged = true;
+            Instantiate(leveldown,this.transform.position,this.transform.rotation);
+            PlayerRX.level -= 1;
+            Destroy(this.gameObject);
         }
         //ライフを減らす
         //life--;
@@ -528,7 +539,15 @@ public class Player : MonoBehaviour
             Pupdate = true;
         }
     }
-
+    private void GetItem()
+    {
+        if (levelupbool)
+        {
+            PlayerRX.level++;
+            Instantiate(levelup, transform.position, transform.rotation);
+            Destroy(this.gameObject);
+        }
+    }
     public bool PlayerUpdateBool()
     {
         return Pupdate;

@@ -13,25 +13,34 @@ public class DethEfect : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        for (int i = 0; i < boxMax; i++)
+        {
+            rnd1 = Random.Range(-0.2f, 0.2f);
+            rnd2 = Random.Range(-0.2f, 0.2f);
+            Instantiate(obj[i], transform.TransformPoint(rnd1, 0, rnd2)
+                , Quaternion.Euler(0, 0, 90 * i));
+            rigi[i] = obj[i].GetComponent<Rigidbody>();
+            rigi[i].AddForce(transform.forward * 0.1f, ForceMode.Force);
+            //Debug.Log(i);
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.K))
-        {
-            for(int i = 0; i < boxMax; i++)
-            {
-                rnd1 = Random.Range(-0.2f, 0.2f);
-                rnd2 = Random.Range(-0.2f, 0.2f);
-                Instantiate(obj[i], transform.TransformPoint(rnd1, 0, rnd2)
-                    , Quaternion.Euler(0, 0,90*i));
-                //rigi[i] = obj[i].GetComponent<Rigidbody>();
-                //rigi[i].AddForce(transform.forward * 0.1f, ForceMode.Force);
-                Debug.Log(i);
-            }
-            
-        }
+        //if (Input.GetKeyDown(KeyCode.K))
+        //{
+        //    for (int i = 0; i < boxMax; i++)
+        //    {
+        //        rnd1 = Random.Range(-0.2f, 0.2f);
+        //        rnd2 = Random.Range(-0.2f, 0.2f);
+        //        Instantiate(obj[i], transform.TransformPoint(rnd1, 0, rnd2)
+        //            , Quaternion.Euler(0, 0, 90 * i));
+        //        //rigi[i] = obj[i].GetComponent<Rigidbody>();
+        //        //rigi[i].AddForce(transform.forward * 0.1f, ForceMode.Force);
+        //        Debug.Log(i);
+        //    }
+
+        //}
     }
 }

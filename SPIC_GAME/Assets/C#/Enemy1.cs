@@ -26,16 +26,18 @@ public class Enemy1 : MonoBehaviour
     private float rotateTime;
 
     private Player pl;
+    private PlayerRX pl2;
 
     [SerializeField]
     private Collider collide;
-
+    //public GameObject desPrefab;
     // Start is called before the first frame update
     void Start()
     {
         originalPosition = transform.position;
         GameObject obj = GameObject.Find("Player");
-        pl = obj.GetComponent<Player>();
+        //pl = obj.GetComponent<Player>();
+        //pl2 = obj.GetComponent<PlayerRX>();
         floorMove = true;
         
     }
@@ -47,7 +49,7 @@ public class Enemy1 : MonoBehaviour
         //{
             if (floorMove)
             {
-                Debug.Log("aaa");
+                //Debug.Log("aaa");
                 //指定時間で1周する計算
                 if (time != 0)
                 {
@@ -89,10 +91,14 @@ public class Enemy1 : MonoBehaviour
     {
         //衝突
         Player player = other.GetComponent<Player>();
-        if (player != null)
+        PlayerRX player2 = other.GetComponent<PlayerRX>();
+        PlayerRX2 player3 = other.GetComponent<PlayerRX2>();
+        PlayerRX3 player4 = other.GetComponent<PlayerRX3>();
+        if (player != null || player2 != null || player3 != null || player4 != null)
         {
             //collide.enabled = false;
-
+            //Instantiate(desPrefab, transform.position, transform.rotation);
+            //Debug.Log("aaa");
             Destroy(gameObject);
             floorMove = false;
             floorRotate = false;
