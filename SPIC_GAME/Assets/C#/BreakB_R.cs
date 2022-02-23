@@ -37,7 +37,8 @@ public class BreakB_R : MonoBehaviour
         PlayerRX player2 = other.GetComponent<PlayerRX>();
         PlayerRX2 player3 = other.GetComponent<PlayerRX2>();
         PlayerRX3 player4 = other.GetComponent<PlayerRX3>();
-        if (player != null || player2 != null || player3 != null || player4 != null)
+        if ((player != null || player2 != null || player3 != null || player4 != null)
+            && Gauge.botan)
         {
             //Debug.Log("bbb");
             GameObject destroyBox = Instantiate(destroyBoxPrefab,

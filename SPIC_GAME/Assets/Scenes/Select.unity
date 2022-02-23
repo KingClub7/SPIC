@@ -1112,7 +1112,7 @@ PrefabInstance:
     - target: {fileID: 539014605792923932, guid: 9cd6b5c2efcbb3e4aaa8236c49fb8bc6,
         type: 3}
       propertyPath: gravity
-      value: 10
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 539014605792923932, guid: 9cd6b5c2efcbb3e4aaa8236c49fb8bc6,
         type: 3}
@@ -1122,12 +1122,17 @@ PrefabInstance:
     - target: {fileID: 539014605792923932, guid: 9cd6b5c2efcbb3e4aaa8236c49fb8bc6,
         type: 3}
       propertyPath: jumpSpeed
-      value: 1
+      value: 0.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 539014605792923932, guid: 9cd6b5c2efcbb3e4aaa8236c49fb8bc6,
+        type: 3}
+      propertyPath: maxFallSpeed
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 539014605792923932, guid: 9cd6b5c2efcbb3e4aaa8236c49fb8bc6,
         type: 3}
       propertyPath: jumpSpeedForwqrd
-      value: 0.5
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 3712833493925268422, guid: 9cd6b5c2efcbb3e4aaa8236c49fb8bc6,
         type: 3}

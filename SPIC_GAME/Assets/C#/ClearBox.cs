@@ -112,7 +112,7 @@ public class ClearBox : MonoBehaviour
             StartFadeIn();
         }
 
-        Debug.Log(alfa);
+        //Debug.Log(alfa);
 
     }
 

@@ -8,8 +8,8 @@ public class ElevatorSC : MonoBehaviour
     public Transform PushTL;
     private Vector3 originalT;
     [SerializeField]private float move = 1;
-    private int moveCount;
-    private float moveMax = 5;
+    [SerializeField]private int moveCount = 0;
+    [SerializeField]private float moveMax = 5;
     private float Timer;
     private float fallTimer;
     private int fallTimerCount;
@@ -27,7 +27,6 @@ public class ElevatorSC : MonoBehaviour
         fallTimer = 0;
         Timer = 0;
         PlayerJump = false;
-        moveCount = 0;
         moveOver = false;
         fall = false;
         //PushCo.enabled = false;

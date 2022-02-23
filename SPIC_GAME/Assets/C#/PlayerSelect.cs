@@ -17,7 +17,7 @@ public class PlayerSelect : MonoBehaviour
     private bool moveCheck;
     private float horiB;//ƒ{ƒ^ƒ“
     private float direction;
-    public int moveCount;
+    static public int moveCount;
     private int moveCountMax = 3;
     public bool GravityZ;
 

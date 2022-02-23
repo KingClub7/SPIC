@@ -30,7 +30,7 @@ public class Gauge : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //Debug.Log(BGauge.fillAmount);
+        Debug.Log(BGauge.fillAmount);
         //ゲージ使用
         if (Input.GetKeyDown(KeyCode.P)&&BGauge.fillAmount >=1)
         {

@@ -6,7 +6,7 @@ public class DethEfect : MonoBehaviour
 {
     public GameObject[] obj = new GameObject[4];
     public int boxMax;
-    private Rigidbody[] rigi = new Rigidbody[4];
+   //public Rigidbody[] rigi = new Rigidbody[4];
     private float rnd1;
     private float rnd2;
 
@@ -19,8 +19,9 @@ public class DethEfect : MonoBehaviour
             rnd2 = Random.Range(-0.2f, 0.2f);
             Instantiate(obj[i], transform.TransformPoint(rnd1, 0, rnd2)
                 , Quaternion.Euler(0, 0, 90 * i));
-            rigi[i] = obj[i].GetComponent<Rigidbody>();
-            rigi[i].AddForce(transform.forward * 0.1f, ForceMode.Force);
+            //rigi[i] = obj[i].GetComponent<Rigidbody>();
+            //rigi[i].AddForce(transform.forward * 0.1f, ForceMode.Force);
+            obj[i].GetComponent<Rigidbody>().AddForce(transform.forward * 0.1f, ForceMode.Force);
             //Debug.Log(i);
         }
     }

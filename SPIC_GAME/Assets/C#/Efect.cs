@@ -42,8 +42,8 @@ public class Efect : MonoBehaviour
     }
     private void EFECT()
     {
-        rnda = Random.Range(-0.6f, 0.6f);
-        rndb = Random.Range(-0.6f, 0.6f);
+        rnda = Random.Range(-0.35f, 0.35f);
+        rndb = Random.Range(-0.35f, 0.35f);
         if (EfeTime >= 0.1f)
         {
             OBJ = Instantiate(boxPrefab, transform.TransformPoint(rnda, 0, rndb), Quaternion.identity);
