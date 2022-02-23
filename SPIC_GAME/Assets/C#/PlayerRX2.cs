@@ -92,6 +92,8 @@ public class PlayerRX2 : MonoBehaviour
     public GameObject leveldown;
     public static int level;
     public static bool levelupbool;
+    [SerializeField] private float airRunSpeed = 2;
+    private float airControlRun;
     // Start is called before the first frame update
     void Start()
     {
@@ -117,18 +119,8 @@ public class PlayerRX2 : MonoBehaviour
             //アイテム処理
             GetItem();
 
-            if (Input.GetKey(KeyCode.N)/*GetKeyDown(KeyCode.N)*/&& controller.isGrounded)
-            {
-                RunmaxMoveSpeed = maxMoveSpeed * 2;
-                Runacceleration = acceleration;
-                run = true;
-            }
-            else
-            {
-                RunmaxMoveSpeed = 0;
-                Runacceleration = 0;
-                run = false;
-            }
+            //走り移動処理
+            UpdateRun();
 
             animator.SetBool("Run", run);
             //Debug.Log(horizontalSpeed);
@@ -296,7 +288,7 @@ public class PlayerRX2 : MonoBehaviour
         animator.SetBool("Ground", controller.isGrounded);
 
         //移動量を計算
-        Vector3 move= new Vector3(horizontalSpeed, verticalSpeed, 0);
+        Vector3 move= new Vector3(horizontalSpeed*airControlRun, verticalSpeed, 0);
 
         //床の移動に追従する処理
         if(activeFloor!=null)
@@ -361,7 +353,31 @@ public class PlayerRX2 : MonoBehaviour
             }
         }
     }
-
+    private void UpdateRun()
+    {
+        //地上走り移動処理
+        if (Input.GetKey(KeyCode.N)/*GetKeyDown(KeyCode.N)*/&& controller.isGrounded)
+        {
+            RunmaxMoveSpeed = maxMoveSpeed * 2;
+            Runacceleration = acceleration;
+            run = true;
+        }
+        else
+        {
+            RunmaxMoveSpeed = 0;
+            Runacceleration = 0;
+            run = false;
+        }
+        if (Input.GetKey(KeyCode.N)/*GetKeyDown(KeyCode.N)*/&& !controller.isGrounded)
+        {
+            airControlRun = airRunSpeed;
+            Debug.Log("aaa");
+        }
+        else
+        {
+            airControlRun = 1;
+        }
+    }
     //コインUI表示更新
     //private void UpdateCoinText()
     //{

@@ -92,6 +92,14 @@ public class PlayerRX3 : MonoBehaviour
     public GameObject leveldown;
     public static int level;
     public static bool levelupbool;
+    [SerializeField] private float airRunSpeed = 2;
+    private float airControlRun;
+
+    public static bool jump;
+    public static bool jumpG;
+    private bool jumpWaza;
+    public static float Gmainasu;
+    private float air_moveC;//特殊移動
     // Start is called before the first frame update
     void Start()
     {
@@ -103,6 +111,7 @@ public class PlayerRX3 : MonoBehaviour
         ////UI表示更新
         //UpdateCoinText();
         //UpdateLifeText();
+        Gmainasu = 0;
     }
 
     // Update is called once per frame
@@ -116,19 +125,11 @@ public class PlayerRX3 : MonoBehaviour
 
             //アイテム処理
             GetItem();
+            //走り移動処理
+            UpdateRun();
 
-            if (Input.GetKey(KeyCode.N)/*GetKeyDown(KeyCode.N)*/&& controller.isGrounded)
-            {
-                RunmaxMoveSpeed = maxMoveSpeed * 2;
-                Runacceleration = acceleration;
-                run = true;
-            }
-            else
-            {
-                RunmaxMoveSpeed = 0;
-                Runacceleration = 0;
-                run = false;
-            }
+            //スペシャル
+            UpdateSpecial();
 
             animator.SetBool("Run", run);
             //Debug.Log(horizontalSpeed);
@@ -296,7 +297,7 @@ public class PlayerRX3 : MonoBehaviour
         animator.SetBool("Ground", controller.isGrounded);
 
         //移動量を計算
-        Vector3 move= new Vector3(horizontalSpeed, verticalSpeed, 0);
+        Vector3 move= new Vector3(horizontalSpeed*airControlRun*air_moveC, verticalSpeed, 0);
 
         //床の移動に追従する処理
         if(activeFloor!=null)
@@ -337,11 +338,18 @@ public class PlayerRX3 : MonoBehaviour
         if (controller.isGrounded)
         {
             verticalSpeed = -gravity * Time.deltaTime;
+            jump = false;
+            jumpG = false;
         }
         //空中では垂直移動速度に重力を加算していく
         else
         {
-            verticalSpeed -= gravity * Time.deltaTime;
+            if (jumpWaza)
+            {
+                verticalSpeed = -3;
+                jumpWaza = false;
+            }
+            verticalSpeed -= (gravity - Gmainasu) * Time.deltaTime;
         }
         //垂直移動速度が最大落下速度を超えないように制限
         verticalSpeed = Mathf.Max(verticalSpeed, -maxFallSpeed);
@@ -353,12 +361,61 @@ public class PlayerRX3 : MonoBehaviour
         //地面に接地している状態でジャンプボタンを押すと垂直移動速度を設定する
         if(controller.isGrounded)
         {
-            if(Input.GetButtonDown("Jump"))
+            if(Input.GetButtonDown("Jump")&&!jumpG)
             {
                 verticalSpeed = jumpSpeed;
+                jump = true;
                 //アニメータにパラメータを送信
                 animator.SetTrigger("Jump");
             }
+        }
+    }
+    private void UpdateRun()
+    {
+        //地上走り移動処理
+        if (Input.GetKey(KeyCode.N)/*GetKeyDown(KeyCode.N)*/&& controller.isGrounded)
+        {
+            RunmaxMoveSpeed = maxMoveSpeed * 2;
+            Runacceleration = acceleration;
+            run = true;
+        }
+        else
+        {
+            RunmaxMoveSpeed = 0;
+            Runacceleration = 0;
+            run = false;
+        }
+        if (Input.GetKey(KeyCode.N)/*GetKeyDown(KeyCode.N)*/&& !controller.isGrounded)
+        {
+            airControlRun = airRunSpeed;
+            Debug.Log("aaa");
+        }
+        else
+        {
+            airControlRun = 1;
+        }
+    }
+
+    private void UpdateSpecial()
+    {
+        if (jumpG && jump && verticalSpeed < -2)
+        {
+            if (Input.GetButton("Jump"))
+            {
+                if (Input.GetButtonDown("Jump")) jumpWaza = true;
+                Gmainasu = 59;
+                air_moveC = 5;
+            }
+            else
+            {
+                Gmainasu = 0;
+                air_moveC = 1;
+            }
+        }
+        if (controller.isGrounded||jumpG)
+        {
+            Gmainasu = 0;
+            air_moveC = 1;
         }
     }
 

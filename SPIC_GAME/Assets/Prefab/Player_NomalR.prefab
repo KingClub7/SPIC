@@ -3507,7 +3507,7 @@ GameObject:
   - component: {fileID: 7350757706020308105}
   - component: {fileID: 7350757706020308110}
   - component: {fileID: 2182583098649445068}
-  - component: {fileID: 6884488539420053999}
+  - component: {fileID: 28593119330860301}
   m_Layer: 0
   m_Name: Player_NomalR
   m_TagString: Untagged
@@ -3582,7 +3582,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   boxPrefab: {fileID: 6678592660619774955, guid: 637f776b834e7f14b911ec760efd767c,
     type: 3}
---- !u!114 &6884488539420053999
+--- !u!114 &28593119330860301
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -3600,11 +3600,11 @@ MonoBehaviour:
   jumpSpeed: 28
   acceleration: 10
   friction: 20
-  airControl: 0.5
+  airControl: 0.3
   pushPower: 0.75
   DamageTime: 0
   materialss: {fileID: 2100000, guid: e45cc944046a2ab4baf10043ce48d9c5, type: 2}
-  OrigunslMaterial: {fileID: 3344614198196290667, guid: 41aea22aca6d38a419380d6f932bbc22,
+  OrigunslMaterial: {fileID: 3344614198196290667, guid: 7ef2c12d121838a4680c4d05d878048b,
     type: 3}
   materialMesh: {fileID: 2100000, guid: 5ed82f53a9787ac4c8463f2700bdff48, type: 2}
   playerRotateTime: 0
