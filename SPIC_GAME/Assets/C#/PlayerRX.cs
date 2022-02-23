@@ -195,14 +195,15 @@ public class PlayerRX : MonoBehaviour
             else
             {
                 //‰ñ“]
-                if (playerRotateTime < 0.4f)
+                if (playerRotateTime < 0.8f)
                 {
                     this.transform.Rotate(600 * Time.deltaTime, 0, 0);
                 }
                 playerRotateTime += Time.deltaTime;
-                if (playerRotateTime >= 0.4f)
+                if (playerRotateTime >= 0.8f)
                 {
                     playerRotateTime = 0;
+                    Destroy(gameObject);
                     cunt++;
                 }
             }
