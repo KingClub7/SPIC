@@ -31,8 +31,12 @@ public class SelectCube : MonoBehaviour
             timer += Time.deltaTime;
             if(timer>1f)
             {
-                StageSelect.SelectStage = stage;
-                SceneManager.LoadScene("StageTitle");
+                if(stage<=0) SceneManager.LoadScene("Setsumei");
+                else if (stage > 0)
+                {
+                    StageSelect.SelectStage = stage;
+                    SceneManager.LoadScene("StageTitle");
+                }
                 //switch(stage)
                 //{
                 //    case 1: 

@@ -72,7 +72,7 @@ public class PlayerSelect : MonoBehaviour
         if(horiB != 0)
         {
             moveCheck = true;
-            if (moveCount <= 1 && horiB < 0) moveCheck = false;
+            if (moveCount <= 0 && horiB < 0) moveCheck = false;
             if (moveCount >= moveCountMax && horiB > 0) moveCheck = false;
             if (horiB > 0 && moveCheck)
             {
