@@ -32,7 +32,7 @@ public class UISPGauge : MonoBehaviour
         {
             Gauge.fillAmount = 1.0f;
         }
-        Debug.Log(Gauge.fillAmount);
+        //Debug.Log(Gauge.fillAmount);
         
     }
 }

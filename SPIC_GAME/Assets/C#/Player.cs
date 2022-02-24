@@ -90,6 +90,7 @@ public class Player : MonoBehaviour
 
     public GameObject levelup;
     public GameObject leveldown;
+    public int level;
 
     public static bool levelupbool;
     [SerializeField] private float airRunSpeed = 2;
@@ -105,7 +106,8 @@ public class Player : MonoBehaviour
         ////UI表示更新
         //UpdateCoinText();
         //UpdateLifeText();
-        PlayerRX.level = 1;
+        level = 1;
+        PlayerRX.DesBool = false;
     }
 
     // Update is called once per frame
@@ -430,7 +432,7 @@ public class Player : MonoBehaviour
             //別で使う      
             if(life < 0)isDamaged = true;
             Instantiate(leveldown,this.transform.position,this.transform.rotation);
-            PlayerRX.level -= 1;
+            level -= 1;
             Destroy(this.gameObject);
         }
         //ライフを減らす
@@ -560,7 +562,7 @@ public class Player : MonoBehaviour
     {
         if (levelupbool)
         {
-            PlayerRX.level++;
+            level++;
             Instantiate(levelup, transform.position, transform.rotation);
             Destroy(this.gameObject);
         }
@@ -572,6 +574,6 @@ public class Player : MonoBehaviour
 
     public int plLife()
     {
-        return life;
+        return level;
     }
 }

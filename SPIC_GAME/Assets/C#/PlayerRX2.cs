@@ -101,6 +101,8 @@ public class PlayerRX2 : MonoBehaviour
         animator = GetComponent<Animator>();
         isDamaged = true;
         Pupdate = true;
+        level = 1;
+        Debug.Log("ccc");
         //Spawn();
         ////UI表示更新
         //UpdateCoinText();
@@ -110,7 +112,7 @@ public class PlayerRX2 : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(level);
+        //Debug.Log(level);
         if (Pupdate)
         {
             //重力処理
@@ -124,7 +126,7 @@ public class PlayerRX2 : MonoBehaviour
 
             animator.SetBool("Run", run);
             //Debug.Log(horizontalSpeed);
-            if (level >= 0)
+            if (level > 0)
             {
                 //ジャンプ処理
                 UpdateJump();
@@ -371,7 +373,7 @@ public class PlayerRX2 : MonoBehaviour
         if (Input.GetKey(KeyCode.N)/*GetKeyDown(KeyCode.N)*/&& !controller.isGrounded)
         {
             airControlRun = airRunSpeed;
-            Debug.Log("aaa");
+            //Debug.Log("aaa");
         }
         else
         {
@@ -434,9 +436,13 @@ public class PlayerRX2 : MonoBehaviour
             }
             else
             {
-                Destroy(this.gameObject);
+                //Debug.Log("aaa");
                 Instantiate(leveldown, this.transform.position, this.transform.rotation);
+                Debug.Log("aaa");
                 level -= 1;
+                Destroy(this.gameObject);
+                
+                //level -= 1;
             }
         }
         //ライフを減らす
@@ -579,6 +585,6 @@ public class PlayerRX2 : MonoBehaviour
 
     public int plLife()
     {
-        return life;
+        return level;
     }
 }

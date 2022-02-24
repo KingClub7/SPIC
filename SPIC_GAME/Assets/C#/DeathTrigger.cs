@@ -23,9 +23,10 @@ public class DeathTrigger : MonoBehaviour
         PlayerRX player2 = other.GetComponent<PlayerRX>();
         PlayerRX2 player3 = other.GetComponent<PlayerRX2>();
         PlayerRX3 player4 = other.GetComponent<PlayerRX3>();
-        if (player != null)player.Death();
-        if (player2 != null)player2.Death();
-        if (player3 != null)player2.Death();
-        if (player4 != null)player2.Death();
+        if (player4 != null)player4.Death();
+        else if (player3 != null)player3.Death();
+        else if (player2 != null)player2.Death();
+        else if (player != null)player.Death();
+        
     }
 }

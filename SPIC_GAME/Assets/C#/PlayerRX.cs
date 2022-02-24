@@ -90,10 +90,13 @@ public class PlayerRX : MonoBehaviour
 
     public GameObject levelup;
     public GameObject leveldown;
-    public static int level;
+    public int level;
     public static bool levelupbool;
     [SerializeField] private float airRunSpeed = 2;
     private float airControlRun;
+
+    [SerializeField] private GameObject DesEfe;
+    public static bool DesBool;
     // Start is called before the first frame update
     void Start()
     {
@@ -101,6 +104,9 @@ public class PlayerRX : MonoBehaviour
         animator = GetComponent<Animator>();
         isDamaged = true;
         Pupdate = true;
+        DesBool = false;
+        level = 1;
+        Debug.Log("bbb");
         //Spawn();
         ////UI表示更新
         //UpdateCoinText();
@@ -110,7 +116,7 @@ public class PlayerRX : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(level);
+        //Debug.Log(level);
         if (Pupdate)
         {
             //重力処理
@@ -203,6 +209,8 @@ public class PlayerRX : MonoBehaviour
                 if (playerRotateTime >= 0.8f)
                 {
                     playerRotateTime = 0;
+                    DesBool = true;
+                    Instantiate(DesEfe, transform.position, transform.rotation);
                     Destroy(gameObject);
                     cunt++;
                 }
@@ -373,7 +381,7 @@ public class PlayerRX : MonoBehaviour
         if (Input.GetKey(KeyCode.N)/*GetKeyDown(KeyCode.N)*/&& !controller.isGrounded)
         {
             airControlRun = airRunSpeed;
-            Debug.Log("aaa");
+            //Debug.Log("aaa");
         }
         else
         {
@@ -437,8 +445,9 @@ public class PlayerRX : MonoBehaviour
             }
             else
             {
-                Destroy(this.gameObject);
+                Debug.Log("ccc");
                 Instantiate(leveldown, this.transform.position, this.transform.rotation);
+                Destroy(this.gameObject);
                 level -= 1;
             }
         }
@@ -482,7 +491,7 @@ public class PlayerRX : MonoBehaviour
         //床チェック
         FloorCheck(hit);
 
-        if(life<0)
+        if(level<0)
         {
             Destroy(hit.collider);
         }
@@ -570,6 +579,7 @@ public class PlayerRX : MonoBehaviour
     {
         if(levelupbool)
         {
+            levelupbool = false;
             level++;
             Instantiate(levelup, transform.position, transform.rotation);
             Destroy(this.gameObject);
@@ -582,6 +592,6 @@ public class PlayerRX : MonoBehaviour
 
     public int plLife()
     {
-        return life;
+        return level;
     }
 }

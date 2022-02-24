@@ -74,6 +74,7 @@
     <Compile Include="Assets\C#\DeathTrigger.cs" />
     <Compile Include="Assets\C#\DethEfect.cs" />
     <Compile Include="Assets\C#\DethEfectApple.cs" />
+    <Compile Include="Assets\C#\DethScene.cs" />
     <Compile Include="Assets\C#\EfeOBJ.cs" />
     <Compile Include="Assets\C#\EfeOBJ2.cs" />
     <Compile Include="Assets\C#\Efect.cs" />
@@ -86,6 +87,7 @@
     <Compile Include="Assets\C#\ItemBox.cs" />
     <Compile Include="Assets\C#\ItemHelmet.cs" />
     <Compile Include="Assets\C#\MFloor.cs" />
+    <Compile Include="Assets\C#\PauseMode.cs" />
     <Compile Include="Assets\C#\Player.cs" />
     <Compile Include="Assets\C#\PlayerR.cs" />
     <Compile Include="Assets\C#\PlayerRX.cs" />
@@ -99,6 +101,7 @@
     <Compile Include="Assets\C#\SelectCube.cs" />
     <Compile Include="Assets\C#\SpecialEfeOBJ.cs" />
     <Compile Include="Assets\C#\SpecialEfect.cs" />
+    <Compile Include="Assets\C#\StageSelect.cs" />
     <Compile Include="Assets\C#\UISPGauge.cs" />
     <Compile Include="Assets\C#\UISPGaugePos.cs" />
     <Reference Include="UnityEngine">

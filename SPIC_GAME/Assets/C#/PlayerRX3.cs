@@ -90,7 +90,7 @@ public class PlayerRX3 : MonoBehaviour
 
     public GameObject levelup;
     public GameObject leveldown;
-    public static int level;
+    public int level;
     public static bool levelupbool;
     [SerializeField] private float airRunSpeed = 2;
     private float airControlRun;
@@ -107,6 +107,7 @@ public class PlayerRX3 : MonoBehaviour
         animator = GetComponent<Animator>();
         isDamaged = true;
         Pupdate = true;
+        level = 2;
         //Spawn();
         ////UIï\é¶çXêV
         //UpdateCoinText();
@@ -398,7 +399,7 @@ public class PlayerRX3 : MonoBehaviour
 
     private void UpdateSpecial()
     {
-        if (jumpG && jump && verticalSpeed < -2)
+        if (!jumpG && jump && verticalSpeed < -2)
         {
             if (Input.GetButton("Jump"))
             {

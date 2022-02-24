@@ -31,18 +31,20 @@ public class SelectCube : MonoBehaviour
             timer += Time.deltaTime;
             if(timer>1f)
             {
-                switch(stage)
-                {
-                    case 1: 
-                        SceneManager.LoadScene("Stage1");
-                        break;
-                    case 2: 
-                        SceneManager.LoadScene("Stage2");
-                        break;
-                    case 3: 
-                        SceneManager.LoadScene("SampleScene");
-                        break;
-                }
+                StageSelect.SelectStage = stage;
+                SceneManager.LoadScene("StageTitle");
+                //switch(stage)
+                //{
+                //    case 1: 
+                //        SceneManager.LoadScene("Stage1");
+                //        break;
+                //    case 2: 
+                //        SceneManager.LoadScene("Stage2");
+                //        break;
+                //    case 3: 
+                //        SceneManager.LoadScene("SampleScene");
+                //        break;
+                //}
             }
         }
         Debug.Log(stage);
