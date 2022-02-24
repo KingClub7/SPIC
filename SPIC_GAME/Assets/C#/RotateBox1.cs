@@ -27,7 +27,7 @@ public class RotateBox1 : MonoBehaviour
     private float verticalSpeed;//垂直移動速度
 
     [SerializeField]
-    private Transform target;//親の座標
+    private Transform oyaPos;//親の座標
 
 
 
@@ -62,7 +62,7 @@ public class RotateBox1 : MonoBehaviour
         {
             if (Boxtime < 1.0f)
             {
-                target.Rotate(0, 0, 180 * Time.deltaTime);
+                oyaPos.Rotate(0, 0, 180 * Time.deltaTime);
             }
             Boxtime += Time.deltaTime;
         }
@@ -90,7 +90,7 @@ public class RotateBox1 : MonoBehaviour
 
 
 
-            if (target != null)
+            if (oyaPos != null)
             {
                 floorR = true;
                 player.lnversionbool();

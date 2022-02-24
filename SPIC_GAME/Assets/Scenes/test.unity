@@ -1097,6 +1097,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: blockNormal2R
       objectReference: {fileID: 0}
+    - target: {fileID: 3110553580686035235, guid: 3d80f7b4e26573846a09fb4a08bc06b5,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3215659733117771784, guid: 3d80f7b4e26573846a09fb4a08bc06b5,
         type: 3}
       propertyPath: m_RootOrder
