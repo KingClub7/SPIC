@@ -82,6 +82,7 @@
     <Compile Include="Assets\C#\ElevatorSL.cs" />
     <Compile Include="Assets\C#\ElevatorSR.cs" />
     <Compile Include="Assets\C#\Enemy1.cs" />
+    <Compile Include="Assets\C#\Enemy2.cs" />
     <Compile Include="Assets\C#\Gauge.cs" />
     <Compile Include="Assets\C#\HitTriggerR.cs" />
     <Compile Include="Assets\C#\ItemBox.cs" />
@@ -104,6 +105,7 @@
     <Compile Include="Assets\C#\StageSelect.cs" />
     <Compile Include="Assets\C#\UISPGauge.cs" />
     <Compile Include="Assets\C#\UISPGaugePos.cs" />
+    <Compile Include="Assets\C#\kutibasi.cs" />
     <Reference Include="UnityEngine">
       <HintPath>C:/Program Files/Unity/Hub/Editor/2019.4.21f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>
     </Reference>
@@ -633,31 +635,31 @@
       <HintPath>C:/Program Files/Unity/Hub/Editor/2019.4.21f1/Editor/Data/NetStandard/compat/2.0.0/shims/netfx/System.Xml.Serialization.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Timeline.Editor">
-      <HintPath>C:/Users/2210077/Documents/GitHub/SPIC/SPIC_GAME/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
+      <HintPath>C:/Users/2210246/Documents/GitHub/SPIC/SPIC_GAME/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.VSCode.Editor">
-      <HintPath>C:/Users/2210077/Documents/GitHub/SPIC/SPIC_GAME/Library/ScriptAssemblies/Unity.VSCode.Editor.dll</HintPath>
+      <HintPath>C:/Users/2210246/Documents/GitHub/SPIC/SPIC_GAME/Library/ScriptAssemblies/Unity.VSCode.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.TextMeshPro.Editor">
-      <HintPath>C:/Users/2210077/Documents/GitHub/SPIC/SPIC_GAME/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
+      <HintPath>C:/Users/2210246/Documents/GitHub/SPIC/SPIC_GAME/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.UI">
-      <HintPath>C:/Users/2210077/Documents/GitHub/SPIC/SPIC_GAME/Library/ScriptAssemblies/UnityEngine.UI.dll</HintPath>
+      <HintPath>C:/Users/2210246/Documents/GitHub/SPIC/SPIC_GAME/Library/ScriptAssemblies/UnityEngine.UI.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Timeline">
-      <HintPath>C:/Users/2210077/Documents/GitHub/SPIC/SPIC_GAME/Library/ScriptAssemblies/Unity.Timeline.dll</HintPath>
+      <HintPath>C:/Users/2210246/Documents/GitHub/SPIC/SPIC_GAME/Library/ScriptAssemblies/Unity.Timeline.dll</HintPath>
     </Reference>
     <Reference Include="Unity.CollabProxy.Editor">
-      <HintPath>C:/Users/2210077/Documents/GitHub/SPIC/SPIC_GAME/Library/ScriptAssemblies/Unity.CollabProxy.Editor.dll</HintPath>
+      <HintPath>C:/Users/2210246/Documents/GitHub/SPIC/SPIC_GAME/Library/ScriptAssemblies/Unity.CollabProxy.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Rider.Editor">
-      <HintPath>C:/Users/2210077/Documents/GitHub/SPIC/SPIC_GAME/Library/ScriptAssemblies/Unity.Rider.Editor.dll</HintPath>
+      <HintPath>C:/Users/2210246/Documents/GitHub/SPIC/SPIC_GAME/Library/ScriptAssemblies/Unity.Rider.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.TextMeshPro">
-      <HintPath>C:/Users/2210077/Documents/GitHub/SPIC/SPIC_GAME/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
+      <HintPath>C:/Users/2210246/Documents/GitHub/SPIC/SPIC_GAME/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
     </Reference>
     <Reference Include="UnityEditor.UI">
-      <HintPath>C:/Users/2210077/Documents/GitHub/SPIC/SPIC_GAME/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
+      <HintPath>C:/Users/2210246/Documents/GitHub/SPIC/SPIC_GAME/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup></ItemGroup>
