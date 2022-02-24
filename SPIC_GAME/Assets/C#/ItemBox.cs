@@ -12,6 +12,7 @@ public class ItemBox : MonoBehaviour
     [SerializeField] private GameObject topBox;
     [SerializeField] private GameObject underBox;
     [SerializeField] private GameObject Item;
+    [SerializeField] private GameObject Item2;
     public static bool clearBool;
     private float clearTime;
     private bool clearRotate;
@@ -96,12 +97,19 @@ public class ItemBox : MonoBehaviour
         Player player = other.GetComponent<Player>();
         PlayerRX player2 = other.GetComponent<PlayerRX>();
         PlayerRX2 player3 = other.GetComponent<PlayerRX2>();
-        if (player != null || player2 != null || player3 != null)
+        if (player != null || player3 != null)
         {
             clearBool = true;
             clearRotate = true;
             //SceneManager.LoadScene("test");
             Instantiate(Item, transform.position, transform.rotation);
+        }
+        if (player2 != null)
+        {
+            clearBool = true;
+            clearRotate = true;
+            //SceneManager.LoadScene("test");
+            Instantiate(Item2, transform.position, transform.rotation);
         }
     }
 }

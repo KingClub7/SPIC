@@ -30,35 +30,38 @@ public class MFloor : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        if (floorMove)
+        if (!PauseMode.start)
         {
-            //指定時間で1周する計算
-            if (time != 0)
+            if (floorMove)
             {
-                theta += Mathf.PI * 2.0f * (1.0f / time) * Time.deltaTime;
+                //指定時間で1周する計算
+                if (time != 0)
+                {
+                    theta += Mathf.PI * 2.0f * (1.0f / time) * Time.deltaTime;
+                }
+                //取得
+                float c = Mathf.Cos(theta);
+                //変換
+                c = (1.0f - c) * 0.5f;
+                //元から目的地まで往復する座標算出
+                Vector3 position = Vector3.Lerp(originalPosition, originalPosition + move, c);
+                transform.position = position;
             }
-            //取得
-            float c = Mathf.Cos(theta);
-            //変換
-            c = (1.0f - c) * 0.5f;
-            //元から目的地まで往復する座標算出
-            Vector3 position = Vector3.Lerp(originalPosition, originalPosition + move, c);
-            transform.position = position;
-        }
 
-        if(floorRotate)
-        {
-            //回転
-            if(rotateTime<0.5f)
+            if (floorRotate)
             {
-                movefloorT.Rotate(180 * Time.deltaTime, 0, 0);
+                //回転
+                if (rotateTime < 0.5f)
+                {
+                    movefloorT.Rotate(180 * Time.deltaTime, 0, 0);
+                }
+                rotateTime += Time.deltaTime;
             }
-                    rotateTime += Time.deltaTime;
-        }
-        if (rotateTime >= 0.5f)
-        {
-            floorRotate = false;
-            rotateTime = 0;
+            if (rotateTime >= 0.5f)
+            {
+                floorRotate = false;
+                rotateTime = 0;
+            }
         }
     }
     private void OnTriggerEnter(Collider other)

@@ -45,8 +45,10 @@ public class Enemy1 : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        //if (pl.PlayerUpdateBool())
-        //{
+        if (!PauseMode.start)
+        {
+            //if (pl.PlayerUpdateBool())
+            //{
             if (floorMove)
             {
                 //Debug.Log("aaa");
@@ -62,10 +64,10 @@ public class Enemy1 : MonoBehaviour
                 //元から目的地まで往復する座標算出
                 Vector3 position = Vector3.Lerp(originalPosition, originalPosition + move, c);
                 transform.position = position;
-                if(transform.position== originalPosition+move|| transform.position == originalPosition)
+                if (transform.position == originalPosition + move || transform.position == originalPosition)
                 {
                     floorMove = false;
-                    floorRotate=true;
+                    floorRotate = true;
                 }
             }
 
@@ -84,8 +86,8 @@ public class Enemy1 : MonoBehaviour
                 floorRotate = false;
                 rotateTime = 0;
             }
-        
-        //}
+
+        }
     }
     private void OnTriggerEnter(Collider other)
     {

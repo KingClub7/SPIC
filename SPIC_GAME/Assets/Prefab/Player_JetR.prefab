@@ -3636,6 +3636,8 @@ MonoBehaviour:
     type: 3}
   level: 0
   airRunSpeed: 2
+  desPrefab: {fileID: 6680742066988477147, guid: 8a43f0cd4e30a0640953c4aa278ae34d,
+    type: 3}
 --- !u!1 &7664731381821864370
 GameObject:
   m_ObjectHideFlags: 0

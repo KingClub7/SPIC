@@ -21,7 +21,7 @@ public class ItemHelmet : MonoBehaviour
         Player player = other.GetComponent<Player>();
         PlayerRX player2 = other.GetComponent<PlayerRX>();
         PlayerRX2 player3 = other.GetComponent<PlayerRX2>();
-        PlayerRX3 player4 = other.GetComponent<PlayerRX3>();
+        //PlayerRX3 player4 = other.GetComponent<PlayerRX3>();
         if (player != null)
         {
             Player.levelupbool = true;
@@ -37,10 +37,10 @@ public class ItemHelmet : MonoBehaviour
             PlayerRX2.levelupbool = true;
             Destroy(gameObject);
         }
-        if (player4 != null)
-        {
-            PlayerRX3.levelupbool = true;
-            Destroy(gameObject);
-        }
+        //if (player4 != null)
+        //{
+        //    PlayerRX3.levelupbool = true;
+        //    Destroy(gameObject);
+        //}
     }
 }

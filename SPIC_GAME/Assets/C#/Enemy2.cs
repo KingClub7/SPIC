@@ -57,7 +57,8 @@ public class Enemy2 : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-
+        if (!PauseMode.start)
+        {
             if (floorMove)
             {
                 //指定時間で1周する計算
@@ -79,33 +80,33 @@ public class Enemy2 : MonoBehaviour
                 //}
             }
 
-        //if (floorRotate)
-        //{
-        //    //回転
-        //    if (rotateTime < 0.5f)
-        //    {
-        //        movefloorT.Rotate(0, 360 * Time.deltaTime, 0);
-        //    }
-        //    rotateTime += Time.deltaTime;
-        //}
-        //if (rotateTime >= 0.5f)
-        //{
-        //    floorMove = true;
-        //    floorRotate = false;
-        //    rotateTime = 0;
-        //}
+            //if (floorRotate)
+            //{
+            //    //回転
+            //    if (rotateTime < 0.5f)
+            //    {
+            //        movefloorT.Rotate(0, 360 * Time.deltaTime, 0);
+            //    }
+            //    rotateTime += Time.deltaTime;
+            //}
+            //if (rotateTime >= 0.5f)
+            //{
+            //    floorMove = true;
+            //    floorRotate = false;
+            //    rotateTime = 0;
+            //}
 
-        if (cuntHitTime >= hittime )
-        {
-            cuntHitTime = 0.0f;
-            Vector3 pos = this.transform.position;
-            pos.z += -1.3f; 
-            pos.y += -2.4f; 
-            Instantiate(kutibasi, pos, Quaternion.identity);
+            if (cuntHitTime >= hittime)
+            {
+                cuntHitTime = 0.0f;
+                Vector3 pos = this.transform.position;
+                pos.z += -1.3f;
+                pos.y += -2.4f;
+                Instantiate(kutibasi, pos, Quaternion.identity);
+            }
+            cuntHitTime += Time.deltaTime;
+
         }
-        cuntHitTime += Time.deltaTime;
-
-
         //if (Time.frameCount%hittime==0)
         //{
         //    Vector3 pos = this.transform.position;

@@ -88,6 +88,8 @@ public class PlayerRX : MonoBehaviour
     [SerializeField]
     private SkinnedMeshRenderer skinnedHelmed;
 
+    public GameObject desPrefab;
+
     public GameObject levelup;
     public GameObject leveldown;
     public int level;
@@ -96,7 +98,7 @@ public class PlayerRX : MonoBehaviour
     private float airControlRun;
 
     [SerializeField] private GameObject DesEfe;
-    public static bool DesBool;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -104,7 +106,7 @@ public class PlayerRX : MonoBehaviour
         animator = GetComponent<Animator>();
         isDamaged = true;
         Pupdate = true;
-        DesBool = false;
+        DethScene.DesBool = false;
         level = 1;
         Debug.Log("bbb");
         //Spawn();
@@ -116,44 +118,65 @@ public class PlayerRX : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        Camera.Ctarget = gameObject.transform;
         //Debug.Log(level);
-        if (Pupdate)
+        if (!PauseMode.start)
         {
-            //重力処理
-            UpdateGravity();
-
-            //アイテム処理
-            GetItem();
-
-            //走り移動処理
-            UpdateRun();
-
-            animator.SetBool("Run", run);
-            //Debug.Log(horizontalSpeed);
-            if (level >= 0)
+            if (Pupdate)
             {
-                //ジャンプ処理
-                UpdateJump();
+                //重力処理
+                UpdateGravity();
 
-                //進行方向更新処理
-                UpdateDirection();
+                //アイテム処理
+                GetItem();
 
+                //走り移動処理
+                UpdateRun();
 
-                if (isDamaged)
+                animator.SetBool("Run", run);
+                //Debug.Log(horizontalSpeed);
+                if (level >= 0)
                 {
-                    //点滅開始
-                    if (cunt < 10)
-                    {
-                        if (DamageTime < 0.1)
-                        {
-                            foreach (SkinnedMeshRenderer body in this.GetComponentsInChildren<SkinnedMeshRenderer>())
-                            {
+                    //ジャンプ処理
+                    UpdateJump();
 
-                                if (materialss)
-                                    body.material = materialss;
+                    //進行方向更新処理
+                    UpdateDirection();
+
+
+                    if (isDamaged)
+                    {
+                        //点滅開始
+                        if (cunt < 10)
+                        {
+                            if (DamageTime < 0.1)
+                            {
+                                foreach (SkinnedMeshRenderer body in this.GetComponentsInChildren<SkinnedMeshRenderer>())
+                                {
+
+                                    if (materialss)
+                                        body.material = materialss;
+                                }
+                            }
+                            else if (DamageTime >= 0.1)
+                            {
+                                foreach (SkinnedMeshRenderer body in this.GetComponentsInChildren<SkinnedMeshRenderer>())
+                                {
+
+                                    if (OrigunslMaterial)
+                                        body.material = OrigunslMaterial;
+                                }
+                                skinnedHelmed.material = materialMesh;
+                            }
+                            if (DamageTime > 0.2)
+                            {
+                                DamageTime = 0;
+                                cunt++;
                             }
                         }
-                        else if (DamageTime >= 0.1)
+                        DamageTime += Time.deltaTime;
+                        //点滅停止
+                        if (cunt >= 10)
                         {
                             foreach (SkinnedMeshRenderer body in this.GetComponentsInChildren<SkinnedMeshRenderer>())
                             {
@@ -162,63 +185,46 @@ public class PlayerRX : MonoBehaviour
                                     body.material = OrigunslMaterial;
                             }
                             skinnedHelmed.material = materialMesh;
-                        }
-                        if (DamageTime > 0.2)
-                        {
+                            cunt = 0;
+                            isDamaged = false;
                             DamageTime = 0;
-                            cunt++;
+
                         }
+
                     }
-                    DamageTime += Time.deltaTime;
-                    //点滅停止
-                    if (cunt >= 10)
+                }
+                else if (level == -1)
+                {
+                    //アニメーターにパラメータを送信
+                    animator.SetFloat("Speed", 0.0f);
+                    horizontalSpeed = 0.0f;
+                    verticalSpeed = 20.0f;
+
+                    level--;
+
+                }
+                else
+                {
+                    //回転
+                    if (playerRotateTime < 0.8f)
                     {
-                        foreach (SkinnedMeshRenderer body in this.GetComponentsInChildren<SkinnedMeshRenderer>())
-                        {
-
-                            if (OrigunslMaterial)
-                                body.material = OrigunslMaterial;
-                        }
-                        skinnedHelmed.material = materialMesh;
-                        cunt = 0;
-                        isDamaged = false;
-                        DamageTime = 0;
-
+                        this.transform.Rotate(600 * Time.deltaTime, 0, 0);
                     }
-
+                    playerRotateTime += Time.deltaTime;
+                    if (playerRotateTime >= 0.8f)
+                    {
+                        playerRotateTime = 0;
+                        DethScene.DesBool = true;
+                        Instantiate(DesEfe, transform.position, transform.rotation);
+                        Destroy(gameObject);
+                        cunt++;
+                    }
                 }
+
+
+                //移動更新処理
+                UpdateMovement();
             }
-            else if (level == -1)
-            {
-                //アニメーターにパラメータを送信
-                animator.SetFloat("Speed", 0.0f);
-                horizontalSpeed = 0.0f;
-                verticalSpeed = 20.0f;
-
-                level--;
-
-            }
-            else
-            {
-                //回転
-                if (playerRotateTime < 0.8f)
-                {
-                    this.transform.Rotate(600 * Time.deltaTime, 0, 0);
-                }
-                playerRotateTime += Time.deltaTime;
-                if (playerRotateTime >= 0.8f)
-                {
-                    playerRotateTime = 0;
-                    DesBool = true;
-                    Instantiate(DesEfe, transform.position, transform.rotation);
-                    Destroy(gameObject);
-                    cunt++;
-                }
-            }
-
-
-            //移動更新処理
-            UpdateMovement();
         }
     }
 
@@ -537,6 +543,12 @@ public class PlayerRX : MonoBehaviour
     //デストリガーとの衝突処理
     private void CollisionDeathTrigger(ControllerColliderHit hit)
     {
+        if (hit.gameObject.tag == ("Enemy"))
+        {
+            DethScene.DesBool = true;
+            Instantiate(desPrefab, transform.position, transform.rotation);
+            Destroy(gameObject);
+        }
         //デストリガーと衝突したら死亡する
         DeathTrigger deathTrigger = hit.gameObject.GetComponent<DeathTrigger>();
         if (deathTrigger != null)

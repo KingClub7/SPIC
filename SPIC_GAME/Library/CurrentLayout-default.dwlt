@@ -116,7 +116,7 @@ MonoBehaviour:
   m_MinSize: {x: 709, y: 492}
   m_MaxSize: {x: 18004, y: 14042}
   vertical: 0
-  controlID: 6555
+  controlID: 25892
 --- !u!114 &6
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -138,10 +138,10 @@ MonoBehaviour:
     y: 0
     width: 638
     height: 731
-  m_MinSize: {x: 201, y: 421}
-  m_MaxSize: {x: 4001, y: 8021}
+  m_MinSize: {x: 201, y: 442}
+  m_MaxSize: {x: 4001, y: 8042}
   vertical: 1
-  controlID: 6624
+  controlID: 25963
 --- !u!114 &7
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -220,7 +220,7 @@ MonoBehaviour:
   m_MinSize: {x: 232, y: 492}
   m_MaxSize: {x: 10002, y: 14042}
   vertical: 1
-  controlID: 6556
+  controlID: 25898
 --- !u!114 &10
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -427,9 +427,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: -3.7126656, y: 1.6674614, z: -5.023801}
+    m_Target: {x: 14.499699, y: 81.77273, z: 2.6393871}
     speed: 2
-    m_Value: {x: -3.7126656, y: 1.6674614, z: -5.023801}
+    m_Value: {x: 14.499699, y: 81.77273, z: 2.6393871}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -475,13 +475,13 @@ MonoBehaviour:
     m_GridAxis: 1
     m_gridOpacity: 0.5
   m_Rotation:
-    m_Target: {x: 0.025169559, y: 0.067767456, z: -0.0012838945, w: 0.9975149}
+    m_Target: {x: 0.0144025665, y: 0.0042441553, z: 0.00070928613, w: 1.0000317}
     speed: 2
-    m_Value: {x: -0.025169559, y: -0.067767456, z: 0.0012838945, w: -0.9975149}
+    m_Value: {x: -0.0144025665, y: -0.0042441553, z: -0.00070928613, w: -1.0000317}
   m_Size:
-    m_Target: 7.2032576
+    m_Target: 23.551882
     speed: 2
-    m_Value: 7.2032576
+    m_Value: 23.551882
   m_Ortho:
     m_Target: 0
     speed: 2
@@ -621,10 +621,10 @@ MonoBehaviour:
       e32: 0
       e33: 1
   m_PreviewAnimator: {fileID: 0}
-  m_AnimatorController: {fileID: 9100000, guid: 3b0e2d069c72c634ca42a3be857f3e79,
+  m_AnimatorController: {fileID: 9100000, guid: 3f9f200cc624dc944b9d3b4e9cf7090e,
     type: 2}
   m_BreadCrumbs:
-  - m_Target: {fileID: 6268349130917313694, guid: 3b0e2d069c72c634ca42a3be857f3e79,
+  - m_Target: {fileID: -1591722206662255826, guid: 3f9f200cc624dc944b9d3b4e9cf7090e,
       type: 2}
     m_ScrollPosition: {x: 0, y: 0}
   stateMachineGraph: {fileID: 0}
@@ -692,10 +692,10 @@ MonoBehaviour:
   m_ViewDataDictionary: {fileID: 0}
   m_SceneHierarchy:
     m_TreeViewState:
-      scrollPos: {x: 0, y: 32}
-      m_SelectedIDs: 626bfdff
-      m_LastClickedID: -169118
-      m_ExpandedIDs: 906ffdff1874fdff3677fdffee78fdffb486fdffca86fdff94dcfdff7056feff8656feff2c72feff5080feff4095feff0aebfefff4f7feff0af8fefff404ffffac06ffff4614ffff5615ffff427e0000507e0000
+      scrollPos: {x: 0, y: 496}
+      m_SelectedIDs: 
+      m_LastClickedID: 0
+      m_ExpandedIDs: 9aa3f2ffde9cf3ff3caaf3ffd86bf4ffe684faff34fffaff4afffaff5894fcff480efdff869ffdff28b5fdff72f8feff1815ffff0e4a0b00fc4a0b00964b0b00ac4b0b00
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -758,19 +758,19 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Prefab
+    - Assets/Scenes
   m_ViewMode: 0
   m_StartGridSize: 64
   m_LastFolders: []
   m_LastFoldersGridSize: -1
-  m_LastProjectPath: C:\Users\2210246\Documents\GitHub\SPIC\SPIC_GAME
+  m_LastProjectPath: C:\Users\2210077\Documents\GitHub\SPIC\SPIC_GAME
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: d63c0000
     m_LastClickedID: 15574
-    m_ExpandedIDs: ffffffff00000000f27c0000f47c0000f67c0000f87c0000fa7c0000fc7c0000fe7c0000007d00003a7d00003c7d00003e7d0000
+    m_ExpandedIDs: ffffffff0000000050840000528400005484000056840000588400005a8400005c840000628400006484000076840000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -795,10 +795,10 @@ MonoBehaviour:
       m_Icon: {fileID: 0}
       m_ResourceFile: 
   m_AssetTreeState:
-    scrollPos: {x: 0, y: 591}
+    scrollPos: {x: 0, y: 344}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: ffffffff00000000f27c0000f47c0000f67c0000f87c0000fa7c0000fc7c0000fe7c0000007d00003a7d00003c7d00003e7d0000
+    m_ExpandedIDs: ffffffff0000000050840000528400005484000056840000588400005a8400005c840000628400006484000076840000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 

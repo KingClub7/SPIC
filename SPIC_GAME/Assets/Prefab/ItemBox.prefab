@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 5144779173857972994}
   - component: {fileID: 4427446312607397137}
   m_Layer: 0
-  m_Name: Item
+  m_Name: ItemBox
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -80,6 +80,8 @@ MonoBehaviour:
   underBoxT: {fileID: 8229836495795327663}
   topBox: {fileID: 8766476332280324002}
   underBox: {fileID: 8754311704400971797}
+  Item: {fileID: 3026356247938019358, guid: 3fbad0760ebfc5147a2f5f2f75e03465, type: 3}
+  Item2: {fileID: 3028982533956406600, guid: 2abbd5898341c4d45832e018cea95672, type: 3}
   isFadeOut: 0
 --- !u!1001 &8460484788287775475
 PrefabInstance:

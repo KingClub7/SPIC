@@ -894,8 +894,11 @@ MonoBehaviour:
   playerRotateTime: 0
   cunt: 0
   skinnedHelmed: {fileID: 7227718892164937788}
+  desPrefab: {fileID: 6680742066988477147, guid: 8a43f0cd4e30a0640953c4aa278ae34d,
+    type: 3}
   levelup: {fileID: 7692793446868537573, guid: a7d83a050739def4ba33ba1648e796a3, type: 3}
   leveldown: {fileID: 0}
+  level: 0
   airRunSpeed: 2
   DesEfe: {fileID: 6680742066988477147, guid: 8a43f0cd4e30a0640953c4aa278ae34d, type: 3}
 --- !u!1 &2261088030051805825

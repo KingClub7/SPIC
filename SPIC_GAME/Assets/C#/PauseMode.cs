@@ -8,7 +8,7 @@ public class PauseMode : MonoBehaviour
 {
     private float sentaku;
     public static bool start;
-    public static bool start2;
+    private bool start2;
     private bool returnSelect;
     public RectTransform IconT;
     public Image IBack;

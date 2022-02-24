@@ -26,16 +26,19 @@ public class Efect : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Gauge.botan)
+        if (!PauseMode.start)
         {
-            EfeStart = true;
-        }
+            if (Gauge.botan)
+            {
+                EfeStart = true;
+            }
 
-        if(EfeStart)EFECT();
-        if(EfeTimeCount >= EfeTimeMax*EfeTimer)
-        {
-            EfeStart = false;
-            EfeTimeCount = 0;
+            if (EfeStart) EFECT();
+            if (EfeTimeCount >= EfeTimeMax * EfeTimer)
+            {
+                EfeStart = false;
+                EfeTimeCount = 0;
+            }
         }
         //Debug.Log(EfeTimeCount);
         //Debug.Log(EfeTime);

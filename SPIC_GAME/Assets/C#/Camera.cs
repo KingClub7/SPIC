@@ -4,11 +4,12 @@ using UnityEngine;
 
 public class Camera : MonoBehaviour
 {
+    [SerializeField]private Transform target;
+
+    public static Transform Ctarget;
+
     [SerializeField]
-    private Transform target;
-    [SerializeField]
-    private Player pl;
-    private PlayerRX pl2;
+    private PlayerRX pl;
     private float smoothness = 0.1f;
     private Vector3 cameraP;
     // Start is called before the first frame update
@@ -21,12 +22,9 @@ public class Camera : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (pl.plLife() >= 0 || pl2.plLife() >= 0)
+        if (pl.plLife() >= 0)
         {
-            if (target != null)
-            {
-                transform.position = Vector3.Lerp(transform.position, target.position + cameraP, smoothness);
-            }
+            if (Ctarget != null)transform.position = Vector3.Lerp(transform.position, Ctarget.position + cameraP, smoothness);
         }
     }
 }
