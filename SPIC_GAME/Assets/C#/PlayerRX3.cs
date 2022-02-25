@@ -103,6 +103,17 @@ public class PlayerRX3 : MonoBehaviour
     public static float Gmainasu;
     public static bool islive;
     private float air_moveC;//特殊移動
+
+    public AudioClip janp;//ジャンプのサウンド
+    public AudioClip injection;//噴射の音
+    public AudioClip gauge;//ゲージ消費
+
+
+    private AudioSource audioSource;
+
+    public GameObject LevelupObj;//レベルupObj
+    public GameObject LeveldownObj;//レベルdownObj
+   
     // Start is called before the first frame update
     void Start()
     {
@@ -117,6 +128,7 @@ public class PlayerRX3 : MonoBehaviour
         //UpdateLifeText();
         Gmainasu = 0;
         islive = true;
+        audioSource = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -376,6 +388,7 @@ public class PlayerRX3 : MonoBehaviour
                 jump = true;
                 //アニメータにパラメータを送信
                 animator.SetTrigger("Jump");
+                audioSource.PlayOneShot(janp);
             }
         }
     }
@@ -487,6 +500,7 @@ public class PlayerRX3 : MonoBehaviour
                 islive = false;
                 Destroy(this.gameObject);
                 //ここ
+                Instantiate(LeveldownObj, this.transform.position, this.transform.rotation);
                 Instantiate(leveldown, this.transform.position, this.transform.rotation);
                 level -= 1;
             }
@@ -626,6 +640,7 @@ public class PlayerRX3 : MonoBehaviour
         if(levelupbool)
         {
             level++;
+            Instantiate(LevelupObj, transform.position, transform.rotation);
             Instantiate(levelup, transform.position, transform.rotation);
             Destroy(this.gameObject);
         }

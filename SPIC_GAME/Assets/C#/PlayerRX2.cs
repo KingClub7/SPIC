@@ -96,6 +96,12 @@ public class PlayerRX2 : MonoBehaviour
     public static bool levelupbool;
     [SerializeField] private float airRunSpeed = 2;
     private float airControlRun;
+
+    public AudioClip janp;//ジャンプのサウンド
+    private AudioSource audioSource;
+
+    public GameObject LevelupObj;//レベルupObj
+    public GameObject LeveldownObj;//レベルdownObj
     // Start is called before the first frame update
     void Start()
     {
@@ -109,6 +115,7 @@ public class PlayerRX2 : MonoBehaviour
         ////UI表示更新
         //UpdateCoinText();
         //UpdateLifeText();
+        audioSource = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -358,6 +365,7 @@ public class PlayerRX2 : MonoBehaviour
                 verticalSpeed = jumpSpeed;
                 //アニメータにパラメータを送信
                 animator.SetTrigger("Jump");
+                audioSource.PlayOneShot(janp);
             }
         }
     }
@@ -443,6 +451,7 @@ public class PlayerRX2 : MonoBehaviour
             else
             {
                 //Debug.Log("aaa");
+                Instantiate(LeveldownObj, this.transform.position, this.transform.rotation);
                 Instantiate(leveldown, this.transform.position, this.transform.rotation);
                 Debug.Log("aaa");
                 level -= 1;
@@ -587,6 +596,7 @@ public class PlayerRX2 : MonoBehaviour
         if(levelupbool)
         {
             level++;
+            Instantiate(LevelupObj, transform.position, transform.rotation);
             Instantiate(levelup, transform.position, transform.rotation);
             Destroy(this.gameObject);
         }

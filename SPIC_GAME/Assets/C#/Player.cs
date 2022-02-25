@@ -97,6 +97,12 @@ public class Player : MonoBehaviour
     public static bool levelupbool;
     [SerializeField] private float airRunSpeed = 2;
     private float airControlRun;
+
+    public AudioClip janp;//ジャンプのサウンド
+    private AudioSource audioSource;
+
+    public GameObject LevelupObj;//レベルupObj
+    public GameObject LeveldownObj;//レベルdownObj
     // Start is called before the first frame update
     void Start()
     {
@@ -110,6 +116,7 @@ public class Player : MonoBehaviour
         //UpdateLifeText();
         level = 1;
         DethScene.DesBool = false;
+        audioSource = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -357,6 +364,7 @@ public class Player : MonoBehaviour
                 verticalSpeed = jumpSpeed;
                 //アニメータにパラメータを送信
                 animator.SetTrigger("Jump");
+                audioSource.PlayOneShot(janp);
             }
         }
     }
@@ -437,6 +445,7 @@ public class Player : MonoBehaviour
             life -= 1;
             //別で使う      
             if(life < 0)isDamaged = true;
+            Instantiate(LeveldownObj, this.transform.position, this.transform.rotation);
             Instantiate(leveldown,this.transform.position,this.transform.rotation);
             level -= 1;
             Destroy(this.gameObject);
@@ -575,6 +584,7 @@ public class Player : MonoBehaviour
         if (levelupbool)
         {
             level++;
+            Instantiate(LevelupObj, transform.position, transform.rotation);
             Instantiate(levelup, transform.position, transform.rotation);
             Destroy(this.gameObject);
         }
