@@ -6,8 +6,8 @@ using UnityEngine;
 public class UISPGaugePos : MonoBehaviour
 {
     // Start is called before the first frame update
-    [SerializeField]
-    private Transform targetTfm;
+    //[SerializeField]
+    //private Transform targetTfm;
     private RectTransform myRectTfm;
     private Vector3 offset = new Vector3(0, 0.2f, 0);
     private Image image;
@@ -20,11 +20,19 @@ public class UISPGaugePos : MonoBehaviour
 
     void Update()
     {
-        myRectTfm.position= RectTransformUtility.WorldToScreenPoint(UnityEngine.Camera.main ,targetTfm.position + offset);
-        if(PlayerRX3.jump)
+        if (PlayerRX3.islive)
         {
-            var c = image.color;
-            image.color = new Color(c.r, c.g, c.b, 1);
+            myRectTfm.position = RectTransformUtility.WorldToScreenPoint(UnityEngine.Camera.main, Camera.Ctarget.position + offset);
+            if (PlayerRX3.jump)
+            {
+                var c = image.color;
+                image.color = new Color(c.r, c.g, c.b, 1);
+            }
+            else
+            {
+                var c = image.color;
+                image.color = new Color(c.r, c.g, c.b, 0);
+            }
         }
         else
         {

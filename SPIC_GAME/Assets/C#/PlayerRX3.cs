@@ -101,6 +101,7 @@ public class PlayerRX3 : MonoBehaviour
     public static bool jumpG;
     private bool jumpWaza;
     public static float Gmainasu;
+    public static bool islive;
     private float air_moveC;//“ÁŽêˆÚ“®
     // Start is called before the first frame update
     void Start()
@@ -115,6 +116,7 @@ public class PlayerRX3 : MonoBehaviour
         //UpdateCoinText();
         //UpdateLifeText();
         Gmainasu = 0;
+        islive = true;
     }
 
     // Update is called once per frame
@@ -482,7 +484,9 @@ public class PlayerRX3 : MonoBehaviour
             }
             else
             {
+                islive = false;
                 Destroy(this.gameObject);
+                //‚±‚±
                 Instantiate(leveldown, this.transform.position, this.transform.rotation);
                 level -= 1;
             }

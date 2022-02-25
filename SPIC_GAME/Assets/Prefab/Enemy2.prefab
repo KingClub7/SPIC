@@ -89,7 +89,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   obj: {fileID: 734967589706251640}
-  desPrefab: {fileID: 0}
+  desPrefab: {fileID: 6680742066988477147, guid: 8a43f0cd4e30a0640953c4aa278ae34d,
+    type: 3}
 --- !u!1 &734967589706251640
 GameObject:
   m_ObjectHideFlags: 0
@@ -177,6 +178,7 @@ MonoBehaviour:
   movefloorT: {fileID: 106100176509069250}
   collide: {fileID: 0}
   hittime: 2
+  KutibashiTime: 1
   kutibasi: {fileID: 1095318978272281625, guid: a14427bc707c81b419c57f3ffa1d0419,
     type: 3}
 --- !u!1 &1099862078242737924

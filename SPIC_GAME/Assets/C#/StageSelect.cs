@@ -36,7 +36,10 @@ public class StageSelect : MonoBehaviour
                     SceneManager.LoadScene("Stage2");
                     break;
                 case 3:
-                    SceneManager.LoadScene("SampleScene");
+                    SceneManager.LoadScene("Stage3");
+                    break;
+                case 4:
+                    SceneManager.LoadScene("Stage4");
                     break;
             }
         }

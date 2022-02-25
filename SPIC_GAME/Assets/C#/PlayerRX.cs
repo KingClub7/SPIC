@@ -444,17 +444,21 @@ public class PlayerRX : MonoBehaviour
         {
             //life -= 1;
             level -= 1;
+            Debug.Log(level);
             //•Ê‚ÅŽg‚¤      
             if (level < 0)
-            { 
+            {
+                Debug.Log("ddd");
                 isDamaged = true;
             }
             else
             {
-                Debug.Log("ccc");
-                Instantiate(leveldown, this.transform.position, this.transform.rotation);
-                Destroy(this.gameObject);
                 level -= 1;
+                isDamaged = true;
+                //Debug.Log("ccc");
+                //Instantiate(leveldown, this.transform.position, this.transform.rotation);
+                //Destroy(this.gameObject);
+                //level -= 1;
             }
         }
         //ƒ‰ƒCƒt‚ðŒ¸‚ç‚·

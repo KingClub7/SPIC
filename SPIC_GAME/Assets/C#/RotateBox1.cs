@@ -44,8 +44,13 @@ public class RotateBox1 : MonoBehaviour
     private float speed = 120;
 
     private Player player;
+    private PlayerRX player2;
+    private PlayerRX2 player3;
+    private PlayerRX3 player4;
 
     private bool upRotateBox;
+
+    private int Pcase;
 
     private int cuntr;
     //[SerializeField]
@@ -63,8 +68,6 @@ public class RotateBox1 : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
-
 
         if (floorR)
         {
@@ -81,8 +84,26 @@ public class RotateBox1 : MonoBehaviour
         {
             floorR = false;
             Boxtime = 0;
-            player.lnversionbool();
-            player = null;
+            switch(Pcase)
+            {
+                case 1:
+                    player.lnversionbool();
+                    player = null;
+                    break;
+                case 2:
+                    player2.lnversionbool();
+                    player2 = null;
+                    break;
+                case 3:
+                    player3.lnversionbool();
+                    player3 = null;
+                    break;
+                case 4:
+                    player4.lnversionbool();
+                    player4 = null;
+                    break;
+            }
+           
             upRotateBox = false;
             cuntr++;
         }
@@ -94,39 +115,88 @@ public class RotateBox1 : MonoBehaviour
         {
             //ÉvÉåÉCÉÑÅ[Ç…è’ìÀÇµÇΩèÍçá
             player = other.GetComponent<Player>();
-            PlayerRX player2 = other.GetComponent<PlayerRX>();
-            PlayerRX2 player3 = other.GetComponent<PlayerRX2>();
-            PlayerRX3 player4 = other.GetComponent<PlayerRX3>();
-            if (player != null || player2 != null || player3 != null || player4 != null)
+            player2 = other.GetComponent<PlayerRX>();
+            player3 = other.GetComponent<PlayerRX2>();
+            player4 = other.GetComponent<PlayerRX3>();
+            if (player != null)
             {
-
-
-
-
-
                 if (oyaPos != null)
                 {
                     floorR = true;
                     foreach (BoxCollider body in this.GetComponentsInChildren<BoxCollider>())
                     {
-
                         if (body)
                         {
                             if (body.isTrigger)
                             {
+                                Pcase = 1;
                                 body.center = -body.center;
                             }
                         }
-
                     }
-
                     player.lnversionbool();
-
                     upRotateBox = true;
-
                 }
-
-
+            }
+            if (player2 != null)
+            {
+                if (oyaPos != null)
+                {
+                    floorR = true;
+                    foreach (BoxCollider body in this.GetComponentsInChildren<BoxCollider>())
+                    {
+                        if (body)
+                        {
+                            if (body.isTrigger)
+                            {
+                                Pcase = 2;
+                                body.center = -body.center;
+                            }
+                        }
+                    }
+                    player2.lnversionbool();
+                    upRotateBox = true;
+                }
+            }
+            if (player3 != null)
+            {
+                if (oyaPos != null)
+                {
+                    floorR = true;
+                    foreach (BoxCollider body in this.GetComponentsInChildren<BoxCollider>())
+                    {
+                        if (body)
+                        {
+                            if (body.isTrigger)
+                            {
+                                Pcase = 3;
+                                body.center = -body.center;
+                            }
+                        }
+                    }
+                    player3.lnversionbool();
+                    upRotateBox = true;
+                }
+            }
+            if (player4 != null)
+            {
+                if (oyaPos != null)
+                {
+                    floorR = true;
+                    foreach (BoxCollider body in this.GetComponentsInChildren<BoxCollider>())
+                    {
+                        if (body)
+                        {
+                            if (body.isTrigger)
+                            {
+                                Pcase = 4;
+                                body.center = -body.center;
+                            }
+                        }
+                    }
+                    player4.lnversionbool();
+                    upRotateBox = true;
+                }
             }
         }
     }

@@ -3722,7 +3722,7 @@ MonoBehaviour:
   leveldown: {fileID: 2136560180028230871, guid: 36266eacf2008364cbf21e12acfb4821,
     type: 3}
   level: 0
-  airRunSpeed: 0
+  airRunSpeed: 2
 --- !u!114 &1988317986987241690
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -379,7 +379,7 @@ public class Player : MonoBehaviour
         if (Input.GetKey(KeyCode.N)/*GetKeyDown(KeyCode.N)*/&& !controller.isGrounded)
         {
             airControlRun = airRunSpeed;
-            Debug.Log("aaa");
+            //Debug.Log("aaa");
         }
         else
         {

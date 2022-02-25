@@ -36,6 +36,8 @@ public class Enemy2 : MonoBehaviour
 
     [SerializeField]
     private float hittime = 5;//
+    [SerializeField]
+    private float KutibashiTime = 1;//
 
     private float cuntHitTime;
 
@@ -59,53 +61,56 @@ public class Enemy2 : MonoBehaviour
     {
         if (!PauseMode.start)
         {
-            if (floorMove)
+            if (!PauseMode.start)
             {
-                //指定時間で1周する計算
-                if (time != 0)
+                if (floorMove)
                 {
-                    theta += Mathf.PI * 2.0f * (1.0f / time) * Time.deltaTime;
+                    //指定時間で1周する計算
+                    if (time != 0)
+                    {
+                        theta += Mathf.PI * 2.0f * (1.0f / time) * Time.deltaTime;
+                    }
+                    //取得
+                    float c = Mathf.Cos(theta);
+                    //変換
+                    c = (1.0f - c) * 0.5f;
+                    //元から目的地まで往復する座標算出
+                    Vector3 position = Vector3.Lerp(originalPosition, originalPosition + move, c);
+                    transform.position = position;
+                    //if (transform.position == originalPosition + move || transform.position == originalPosition)
+                    //{
+                    //    floorMove = false;
+                    //    floorRotate = true;
+                    //}
                 }
-                //取得
-                float c = Mathf.Cos(theta);
-                //変換
-                c = (1.0f - c) * 0.5f;
-                //元から目的地まで往復する座標算出
-                Vector3 position = Vector3.Lerp(originalPosition, originalPosition + move, c);
-                transform.position = position;
-                //if (transform.position == originalPosition + move || transform.position == originalPosition)
+
+                //if (floorRotate)
                 //{
-                //    floorMove = false;
-                //    floorRotate = true;
+                //    //回転
+                //    if (rotateTime < 0.5f)
+                //    {
+                //        movefloorT.Rotate(0, 360 * Time.deltaTime, 0);
+                //    }
+                //    rotateTime += Time.deltaTime;
                 //}
+                //if (rotateTime >= 0.5f)
+                //{
+                //    floorMove = true;
+                //    floorRotate = false;
+                //    rotateTime = 0;
+                //}
+
+                if (cuntHitTime >= hittime)
+                {
+                    cuntHitTime = 0.0f;
+                    Vector3 pos = this.transform.position;
+                    pos.z += -1.3f;
+                    pos.y += -2.4f;
+                    Instantiate(kutibasi, pos, Quaternion.Euler(0, -90, 0));
+                }
+                cuntHitTime += Time.deltaTime * KutibashiTime;
+
             }
-
-            //if (floorRotate)
-            //{
-            //    //回転
-            //    if (rotateTime < 0.5f)
-            //    {
-            //        movefloorT.Rotate(0, 360 * Time.deltaTime, 0);
-            //    }
-            //    rotateTime += Time.deltaTime;
-            //}
-            //if (rotateTime >= 0.5f)
-            //{
-            //    floorMove = true;
-            //    floorRotate = false;
-            //    rotateTime = 0;
-            //}
-
-            if (cuntHitTime >= hittime)
-            {
-                cuntHitTime = 0.0f;
-                Vector3 pos = this.transform.position;
-                pos.z += -1.3f;
-                pos.y += -2.4f;
-                Instantiate(kutibasi, pos, Quaternion.identity);
-            }
-            cuntHitTime += Time.deltaTime;
-
         }
         //if (Time.frameCount%hittime==0)
         //{

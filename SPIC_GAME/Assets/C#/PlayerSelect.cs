@@ -18,7 +18,7 @@ public class PlayerSelect : MonoBehaviour
     private float horiB;//É{É^Éì
     private float direction;
     static public int moveCount;
-    private int moveCountMax = 3;
+    private int moveCountMax = 4;
     public bool GravityZ;
 
     [SerializeField]private float gravity = 60.0f;//èdóÕ
