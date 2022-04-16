@@ -16,6 +16,8 @@ public class UISPGaugePos : MonoBehaviour
     {
         myRectTfm = GetComponent<RectTransform>();
         image = GetComponent<Image>();
+        var c = image.color;
+        image.color = new Color(c.r, c.g, c.b, 0);
     }
 
     void Update()

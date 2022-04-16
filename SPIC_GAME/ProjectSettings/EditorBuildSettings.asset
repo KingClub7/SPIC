@@ -6,6 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Scenes/GameTitle.unity
+    guid: 62bafdb77ec10d94888fce795174759f
+  - enabled: 1
     path: Assets/Scenes/Select.unity
     guid: 6f7482b4cac95334d901079b04a29558
   - enabled: 1
@@ -20,6 +23,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Stage3.unity
     guid: 3b4057366ab5783438f3874d27e03009
+  - enabled: 1
+    path: Assets/Scenes/Stage4.unity
+    guid: 54e44e9fd2f98f64682d9de23c4f9657
   - enabled: 1
     path: Assets/Scenes/Setsumei.unity
     guid: fa33ad48bf0267643a023f6a3ddcf500

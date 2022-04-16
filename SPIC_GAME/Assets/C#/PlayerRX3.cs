@@ -594,6 +594,7 @@ public class PlayerRX3 : MonoBehaviour
         if (hit.gameObject.tag == ("Enemy"))
         {
             DethScene.DesBool = true;
+            islive = false;
             Instantiate(desPrefab, transform.position, transform.rotation);
             Destroy(gameObject);
         }

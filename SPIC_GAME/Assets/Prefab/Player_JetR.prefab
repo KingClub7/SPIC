@@ -3543,6 +3543,7 @@ GameObject:
   - component: {fileID: 7393790818243104010}
   - component: {fileID: 7393790818243104009}
   - component: {fileID: -1091762905275008819}
+  - component: {fileID: 8113631446325527878}
   m_Layer: 0
   m_Name: Player_JetR
   m_TagString: Untagged
@@ -3742,6 +3743,20 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &8113631446325527878
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7664401175584873212}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c8fd046d99d14ed45bf53d8d26574e18, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  boxPrefab: {fileID: 6678592660619774955, guid: 637f776b834e7f14b911ec760efd767c,
+    type: 3}
 --- !u!1 &7664731381821864370
 GameObject:
   m_ObjectHideFlags: 0

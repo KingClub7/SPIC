@@ -116,6 +116,7 @@ public class Player : MonoBehaviour
         //UpdateLifeText();
         level = 1;
         DethScene.DesBool = false;
+        levelupbool = false;
         audioSource = GetComponent<AudioSource>();
     }
 

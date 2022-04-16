@@ -53,7 +53,10 @@ public class PlayerSelect : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        if (Input.GetKeyDown(KeyCode.Backspace))
+        {
+            SceneManager.LoadScene("GameTitle");
+        }
         //d—Íˆ—
         UpdateGravity();
         if(GravityZ)

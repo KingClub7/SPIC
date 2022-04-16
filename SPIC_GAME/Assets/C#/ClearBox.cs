@@ -128,6 +128,7 @@ public class ClearBox : MonoBehaviour
         {
             clearBool = true;
             clearRotate = true;
+            AudioClear.start = true;
             //SceneManager.LoadScene("test");
         }
     }
